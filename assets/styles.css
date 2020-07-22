@@ -107,6 +107,15 @@ body {
   padding: 0 20px;
 }
 
+.header__link .site-header__cart {
+  padding: 0;
+}
+
+.header__link .site-header__cart-count {
+  right: -4px;
+  top: -3px;
+}
+
 .header__dropdown:hover .header__sub-menu {
   display: block;
 }
@@ -142,10 +151,6 @@ body {
   z-index: 20;
   padding: 20px;
   display: none;
-}
-
-.mobile-menu.active {
-  display: block;
 }
 
 .mobile-menu__logo {

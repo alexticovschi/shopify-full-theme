@@ -1,17 +1,17 @@
 {% if section.settings.message %}
   <style>
-    {% if section.settings.logo != blank %}
-      .site-header__logo-image {
-        max-width: {{ section.settings.logo_max_width | escape }}px;
-      }
-    {% endif %}
+  {% if section.settings.logo != blank %}
+    .site-header__logo-image {
+      max-width: {{ section.settings.logo_max_width | escape }}px;
+    }
+  {% endif %}
 
-    {% if section.settings.align_logo == 'left' %}
-      .site-header__logo-image {
-        margin: 0;
-      }
-    {% endif %}
-  </style>
+  {% if section.settings.align_logo == 'left' %}
+    .site-header__logo-image {
+      margin: 0;
+    }
+  {% endif %}
+</style>
 {% endif %}
 
 {% include 'search-drawer' %}
@@ -44,238 +44,223 @@
       <div class="announcement-bar" role="region" aria-label="{{ 'sections.header.announcement_bar_label' | t }}">
         {%- unless section.settings.message_link == blank -%}
           <a href="{{ section.settings.message_link }}" class="announcement-bar__link">
-        {%- endunless -%}
-            <p class="announcement-bar__message">{{ section.settings.message_text | escape }}</p>
-        {%- unless section.settings.message_link == blank -%}
+          {%- endunless -%}
+          <p class="announcement-bar__message">{{ section.settings.message_text | escape }}</p>
+          {%- unless section.settings.message_link == blank -%}
           </a>
         {%- endunless -%}
       </div>
 
     {% endif %}
   {% endif %}
+</div>
+<header class="header" style="background: #000;">
+  <div class="header__logo">
+    {% if section.settings.logo %}
+      {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      <a href="{{ routes.root_url }}" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered{% endif %}">
+        {% capture logo_alt %}
+          {{ section.settings.logo.alt | default: shop.name }}
+        {% endcapture %}
+        <img class="lazyload js" src="{{ section.settings.logo | img_url: '300x300' }}" data-src="{{ img_url }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ section.settings.logo.aspect_ratio }}" data-sizes="auto" alt="{{ logo_alt | escape }}" style="max-width: {{ section.settings.logo_max_width }}px">
+        <noscript>
+          {% capture image_size %}
+            {{ section.settings.logo_max_width | escape }}x
+          {% endcapture %}
+          <img src="{{ section.settings.logo | img_url: image_size }}" srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x" alt="{{ section.settings.logo.alt | default: shop.name }}" style="max-width: {{ section.settings.logo_max_width }}px;">
+        </noscript>
+      </a>
+    {% else %}
+      <a class="site-header__logo-link" href="{{ routes.root_url }}">{{ shop.name }}
+        - Kill Billies</a>
+    {% endif %}
+  </div>
+  <ul class="header__menu">
+    <!-- start menu loop -->
+    {% for link in linklists.main-menu.links %}
+      {% assign child_list_handle =
+        link.title | handleize %}
+      {% if linklists[child_list_handle].links != blank
+        %}
+        <li class="header__link header__dropdown">
+          <a href="{{ link.url }}">{{ link.title }}</a>
 
-  <header class="site-header{% if section.settings.align_logo == 'left' %} border-bottom logo--left{% else %} logo--center{% endif %}" role="banner">
-    <div class="grid grid--no-gutters grid--table site-header__mobile-nav">
-      {% if section.settings.align_logo == 'center' %}
-        {%- assign logo_classes = 'medium-up--one-third medium-up--push-one-third logo-align--center' -%}
-      {% else %}
-        {%- assign logo_classes = 'medium-up--one-quarter logo-align--left' -%}
-      {% endif %}
-
-      <div class="grid__item {{ logo_classes }}">
-        {% comment %}
-          Use the uploaded logo from theme settings if enabled.
-          Site name gets precedence with H1 tag on homepage, div on other pages.
-        {% endcomment %}
-        {% if request.page_type == 'index' %}
-          <h1 class="h2 site-header__logo">
-        {% else %}
-          <div class="h2 site-header__logo">
-        {% endif %}
-          {% if section.settings.logo %}
-            {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-            <a href="{{ routes.root_url }}" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered{% endif %}">
-              {% capture logo_alt %}{{ section.settings.logo.alt | default: shop.name }}{% endcapture %}
-              <img class="lazyload js"
-                   src="{{ section.settings.logo | img_url: '300x300' }}"
-                   data-src="{{ img_url }}"
-                   data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
-                   data-aspectratio="{{ section.settings.logo.aspect_ratio }}"
-                   data-sizes="auto"
-                   alt="{{ logo_alt | escape }}"
-                   style="max-width: {{ section.settings.logo_max_width }}px">
-              <noscript>
-                {% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
-                <img src="{{ section.settings.logo | img_url: image_size }}"
-                     srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
-                     alt="{{ section.settings.logo.alt | default: shop.name }}"
-                     style="max-width: {{ section.settings.logo_max_width }}px;">
-              </noscript>
-            </a>
-          {% else %}
-            <a class="site-header__logo-link" href="{{ routes.root_url }}">{{ shop.name }} - Kill Billies</a>
-          {% endif %}
-        {% if request.page_type == 'index' %}
-          </h1>
-        {% else %}
+          <div class="header__sub-menu">
+            {% for childlink in linklists[child_list_handle].links %}
+              <a href="{{ childlink.url }}" class="header__sub-link">{{ childlink.title | escape }}</a>
+            {% endfor %}
           </div>
-        {% endif %}
-      </div>
-
-      {% if section.settings.align_logo == 'left' %}
-        <nav class="grid__item medium-up--one-half small--hide" id="AccessibleNav" role="navigation">
-          {% include 'site-nav', linklist: section.settings.main_linklist %}
-        </nav>
+        </li>
+      {% else %}
+        <li class="header__link">
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        </li>
       {% endif %}
-
-      <div class="grid__item {% if section.settings.align_logo == 'left' %}medium-up--one-quarter{% else %}medium-up--one-third medium-up--push-one-third{% endif %} text-right site-header__icons{% if shop.customer_accounts_enabled %} site-header__icons--plus{% endif %}">
-        <div class="site-header__icons-wrapper">
-
-          <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top">
-            {% include 'icon-search' %}
-            <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
-          </button>
-
-          {% if shop.customer_accounts_enabled %}
-            {% if customer %}
-              <a href="{{ routes.account_url }}" class="site-header__icon site-header__account">
-                {% include 'icon-login' %}
-                <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
-              </a>
-            {% else %}
-              <a href="{{ routes.account_login_url }}" class="site-header__icon site-header__account">
-                {% include 'icon-login' %}
-                <span class="icon__fallback-text">{{ 'layout.customer.log_in' | t }}</span>
-              </a>
-            {% endif %}
-          {% endif %}
-
-          <a href="{{ routes.cart_url }}" class="site-header__icon site-header__cart">
-            {% include 'icon-cart' %}
-            <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
-            <div id="CartCount" class="site-header__cart-count{% if cart.item_count == 0 %} hide{% endif %}" data-cart-count-bubble>
-              <span data-cart-count>{{ cart.item_count }}</span>
-              <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
-            </div>
+    {% endfor %}
+    <!-- end menu loop -->
+    {% if shop.customer_accounts_enabled %}
+      {% if customer %}
+        <li class="header__link">
+          <a href="{{ routes.account_url }}" class="">
+            {% include 'icon-login' %}
+            <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
           </a>
-
-          {% unless linklists[section.settings.main_linklist] == blank %}
-            <button type="button" class="btn--link site-header__icon site-header__menu js-mobile-nav-toggle mobile-nav--open" aria-controls="MobileNav"  aria-expanded="false" aria-label="{{ 'layout.navigation.menu' | t }}">
-              {% include 'icon-hamburger' %}
-              {% include 'icon-close' %}
-            </button>
-          {% endunless %}
+        </li>
+      {% else %}
+        <li class="header__link">
+          <a href="{{ routes.account_login_url }}" class="">
+            {% include 'icon-login' %}
+            <span class="icon__fallback-text">{{ 'layout.customer.log_in' | t }}</span>
+          </a>
+        </li>
+      {% endif %}
+    {% endif %}
+    <li class="header__link">
+      <a href="{{ routes.cart_url }}" class="site-header__cart">
+        {% include 'icon-cart' %}
+        <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+        <div class="site-header__cart-count{% if cart.item_count == 0 %} hide{% endif %}" data-cart-count-bubble id="CartCount">
+          <span data-cart-count>{{ cart.item_count }}</span>
+          <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
         </div>
+      </a>
+    </li>
 
-      </div>
+    <li class="header__open-mobile-menu open-menu">
+      <i aria-hidden="true" class="fa fa-bars"></i>
+    </li>
+  </ul>
+</header>
+<section class="mobile-menu active">
+  <div class="mobile-menu__logo">
+    <div class="mobile-menu__close-menu close-menu">
+      <i aria-hidden="true" class="fa fa-times"></i>
     </div>
 
-    <nav class="mobile-nav-wrapper medium-up--hide" role="navigation">
-      <ul id="MobileNav" class="mobile-nav">
-        {% for link in linklists[section.settings.main_linklist].links %}
-          {%- assign outerLoopIndex = forloop.index -%}
+    {% if section.settings.logo %}
+      {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      <a href="{{ routes.root_url }}" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered{% endif %}">
+        {% capture logo_alt %}
+          {{ section.settings.logo.alt | default: shop.name }}
+        {% endcapture %}
+        <img class="lazyload js" src="{{ section.settings.logo | img_url: '300x300' }}" data-src="{{ img_url }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]" data-aspectratio="{{ section.settings.logo.aspect_ratio }}" data-sizes="auto" alt="{{ logo_alt | escape }}" style="max-width: {{ section.settings.logo_max_width }}px">
+        <noscript>
+          {% capture image_size %}
+            {{ section.settings.logo_max_width | escape }}x
+          {% endcapture %}
+          <img src="{{ section.settings.logo | img_url: image_size }}" srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x" alt="{{ section.settings.logo.alt | default: shop.name }}" style="max-width: {{ section.settings.logo_max_width }}px;">
+        </noscript>
+      </a>
+    {% else %}
+      <a class="site-header__logo-link" href="{{ routes.root_url }}">{{ shop.name }}</a>
+    {% endif %}
+  </div>
+  <ul class="mobile-menu__list">
+    <!-- start menu loop -->
+    {% for link in linklists.main-menu.links %}
+      {% assign child_list_handle =
+        link.title | handleize %}
+      {% if linklists[child_list_handle].links != blank
+        %}
+        <li class="mobile-menu__link mobile-menu__dropdown">
+          <a href="{{ link.url }}">{{ link.title }}</a>
 
-          <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %}">
-            {% if link.links != blank %}
-              {% capture child_list_handle %}{{ link.handle }}-{{ outerLoopIndex }}{% endcapture %}
-              <button type="button" class="btn--link js-toggle-submenu mobile-nav__link{% if link.child_active %} mobile-nav__link--active{% endif %}" data-target="{{ child_list_handle }}" data-level="1" aria-expanded="false">
-                <span class="mobile-nav__label">{{ link.title | escape }}</span>
-                <div class="mobile-nav__icon">
-                  {% include 'icon-chevron-right' %}
-                </div>
-              </button>
-              <ul class="mobile-nav__dropdown" data-parent="{{ child_list_handle }}" data-level="2">
-                <li class="visually-hidden" tabindex="-1" data-menu-title="2">
-                  {{- link.title }} {{ 'layout.navigation.menu' | t -}}
-                </li>
-                <li class="mobile-nav__item border-bottom">
-                  <div class="mobile-nav__table">
-                    <div class="mobile-nav__table-cell mobile-nav__return">
-                      <button class="btn--link js-toggle-submenu mobile-nav__return-btn" type="button" aria-expanded="true" aria-label="{{ link.title }}">
-                        {% include 'icon-chevron-left' %}
-                      </button>
-                    </div>
-                    <span class="mobile-nav__sublist-link mobile-nav__sublist-header mobile-nav__sublist-header--main-nav-parent">
-                      <span class="mobile-nav__label">{{ link.title | escape }}</span>
-                    </span>
-                  </div>
-                </li>
+          <div class="mobile-menu__sub-menu">
+            {% for childlink in linklists[child_list_handle].links %}
+              <a href="{{ childlink.url }}" class="header__sub-link">{{ childlink.title | escape }}</a>
+            {% endfor %}
+          </div>
+        </li>
+      {% else %}
+        <li class="mobile-menu__link">
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+    <!-- end menu loop -->
+    {% if shop.customer_accounts_enabled %}
+      {% if customer %}
+        <li class="mobile-menu__link">
+          <a href="{{ routes.account_url }}" class="">
+            {% include 'icon-login' %}
+            <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
+          </a>
+        </li>
+      {% else %}
+        <li class="mobile-menu__link">
+          <a href="{{ routes.account_login_url }}" class="">
+            {% include 'icon-login' %}
+            <span class="icon__fallback-text">{{ 'layout.customer.log_in' | t }}</span>
+          </a>
+        </li>
+      {% endif %}
+    {% endif %}
+    <li class="mobile-menu__link">
+      <a href="{{ routes.cart_url }}" class="site-header__cart">
+        {% include 'icon-cart' %}
+        <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+        <div class="site-header__cart-count{% if cart.item_count == 0 %} hide{% endif %}" data-cart-count-bubble id="CartCount">
+          <span data-cart-count>{{ cart.item_count }}</span>
+          <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
+        </div>
+      </a>
+    </li>
 
-                {% for childlink in link.links %}
-                  <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %}">
-                    {% if childlink.links != blank %}
-                      {% capture grandchild_list_handle %}{{ childlink.handle }}-{{ outerLoopIndex }}-{{ forloop.index }}{% endcapture %}
-                      <button type="button" class="btn--link js-toggle-submenu mobile-nav__link mobile-nav__sublist-link" data-target="{{ grandchild_list_handle }}" aria-expanded="false">
-                        <span class="mobile-nav__label">{{ childlink.title | escape }}</span>
-                        <div class="mobile-nav__icon">
-                          {% include 'icon-chevron-right' %}
-                        </div>
-                      </button>
-                      <ul class="mobile-nav__dropdown" data-parent="{{ grandchild_list_handle }}" data-level="3">
-                        <li class="visually-hidden" tabindex="-1" data-menu-title="3">
-                          {{- childlink.title }} {{ 'layout.navigation.menu' | t -}}
-                        </li>
-                        <li class="mobile-nav__item border-bottom">
-                          <div class="mobile-nav__table">
-                            <div class="mobile-nav__table-cell mobile-nav__return">
-                              <button type="button" class="btn--link js-toggle-submenu mobile-nav__return-btn" data-target="{{ child_list_handle }}" aria-expanded="true" aria-label="{{ childlink.title }}">
-                                {% include 'icon-chevron-left' %}
-                              </button>
-                            </div>
-                            <a href="{{ childlink.url }}"
-                              class="mobile-nav__sublist-link mobile-nav__sublist-header"
-                              {% if childlink.current %} aria-current="page"{% endif %}
-                            >
-                              <span class="mobile-nav__label">{{ childlink.title | escape }}</span>
-                            </a>
-                          </div>
-                        </li>
-                        {% for grandchildlink in childlink.links %}
-                          <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %}">
-                            <a href="{{ grandchildlink.url }}"
-                              class="mobile-nav__sublist-link"
-                              {% if grandchildlink.current %} aria-current="page"{% endif %}
-                            >
-                              <span class="mobile-nav__label">{{ grandchildlink.title | escape }}</span>
-                            </a>
-                          </li>
-                        {% endfor %}
-                      </ul>
-                    {% else %}
-                      <a href="{{ childlink.url }}"
-                        class="mobile-nav__sublist-link"
-                        {% if childlink.current %} aria-current="page"{% endif %}
-                      >
-                        <span class="mobile-nav__label">{{ childlink.title | escape }}</span>
-                      </a>
-                    {% endif %}
-                  </li>
-                {% endfor %}
-              </ul>
-            {% else %}
-              <a href="{{ link.url }}"
-                class="mobile-nav__link{% if link.active %} mobile-nav__link--active{% endif %}"
-                {% if link.current %} aria-current="page"{% endif %}
-              >
-                <span class="mobile-nav__label">{{ link.title | escape }}</span>
-              </a>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    </nav>
-  </header>
+    <li class="header__open-mobile-menu open-menu">
+      <i aria-hidden="true" class="fa fa-bars"></i>
+    </li>
 
-  {% if section.settings.align_logo == 'center' %}
-  <nav class="small--hide border-bottom" id="AccessibleNav" role="navigation">
-    {% include 'site-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered' %}
-  </nav>
-  {% endif %}
-</div>
+    <!-- <li class="mobile-menu__link">
+      <a href="#">About</a>
+    </li>
+    <li class="mobile-menu__link mobile-menu__dropdown">
+      <a href="#">Products</a>
 
+      <div class="mobile-menu__sub-menu">
+        <a class="mobile-menu__sub-link" href="#">Shirts</a>
+        <a class="mobile-menu__sub-link" href="#">Shoes</a>
+        <a class="mobile-menu__sub-link" href="#">Accessories</a>
+      </div>
+    </li>
+    <li class="mobile-menu__link">
+      <a href="#">About</a>
+    </li>
+    <li class="mobile-menu__link mobile-menu__dropdown">
+      <a href="#">About</a>
 
+      <div class="mobile-menu__sub-menu">
+        <a class="mobile-menu__sub-link" href="#">Link 1</a>
+        <a class="mobile-menu__sub-link" href="#">Link 2</a>
+        <a class="mobile-menu__sub-link" href="#">Link 3</a>
+      </div>
+    </li> -->
+  </ul>
+</section>
 
 <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Organization",
-  "name": {{ shop.name | json }},
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name":
+  {{ shop.name | json }},
   {% if section.settings.logo %}
     {% assign image_size = section.settings.logo.width | append:'x' %}
-    "logo": {{ section.settings.logo | img_url: image_size | prepend: "https:" | json }},
+    "logo":
+    {{ section.settings.logo | img_url: image_size | prepend: "https:" | json }},
   {% endif %}
   "sameAs": [
-    {{ settings.social_twitter_link | json }},
-    {{ settings.social_facebook_link | json }},
-    {{ settings.social_pinterest_link | json }},
-    {{ settings.social_instagram_link | json }},
-    {{ settings.social_tumblr_link | json }},
-    {{ settings.social_snapchat_link | json }},
-    {{ settings.social_youtube_link | json }},
-    {{ settings.social_vimeo_link | json }}
+  {{ settings.social_twitter_link | json }},
+  {{ settings.social_facebook_link | json }},
+  {{ settings.social_pinterest_link | json }},
+  {{ settings.social_instagram_link | json }},
+  {{ settings.social_tumblr_link | json }},
+  {{ settings.social_snapchat_link | json }},
+  {{ settings.social_youtube_link | json }},
+  {{ settings.social_vimeo_link | json }}
   ],
-  "url": {{ shop.url | append: page.url | json }}
-}
+    "url":
+  {{ shop.url | append: page.url | json }}
+  }
 </script>
 
 {% if request.page_type == 'index' %}
@@ -318,79 +303,6 @@
     "zh-TW": "標頭"
   },
   "settings": [
-    {
-      "type": "radio",
-      "id": "align_logo",
-      "label": {
-        "da": "Logojustering",
-        "de": "Logo-Ausrichtung",
-        "en": "Logo alignment",
-        "es": "Alineación de logo",
-        "fi": "Logon tasaus",
-        "fr": "Alignement du logo",
-        "hi": "लोगो संरेखण",
-        "it": "Allineamento logo",
-        "ja": "ロゴアラインメント",
-        "ko": "로고 정렬",
-        "nb": "Logojustering",
-        "nl": "Logo-uitlijning",
-        "pt-BR": "Alinhamento do logotipo",
-        "pt-PT": "Alinhamento do logótipo",
-        "sv": "Logojustering",
-        "th": "การจัดวางโลโก้",
-        "zh-CN": "logo 对齐方式",
-        "zh-TW": "商標對齊"
-      },
-      "default": "left",
-      "options": [
-        {
-          "value": "left",
-          "label": {
-            "da": "Venstre",
-            "de": "Links",
-            "en": "Left",
-            "es": "Izquierda",
-            "fi": "Vasen",
-            "fr": "Gauche",
-            "hi": "बाएँ",
-            "it": "Sinistra",
-            "ja": "左",
-            "ko": "왼쪽",
-            "nb": "Venstre",
-            "nl": "Links",
-            "pt-BR": "Esquerda",
-            "pt-PT": "Esquerda",
-            "sv": "Vänster",
-            "th": "ด้านซ้าย",
-            "zh-CN": "左侧",
-            "zh-TW": "左方"
-          }
-        },
-        {
-          "value": "center",
-          "label": {
-            "da": "Centreret",
-            "de": "Mittig",
-            "en": "Centered",
-            "es": "Centrada",
-            "fi": "Keskitetty",
-            "fr": "Centré",
-            "hi": "केंद्र",
-            "it": "Centrato",
-            "ja": "中央揃え",
-            "ko": "센터 맞추기",
-            "nb": "Sentrert",
-            "nl": "Gecentreerd",
-            "pt-BR": "Centralizado",
-            "pt-PT": "Centrado",
-            "sv": "Centrera",
-            "th": "ตรงกลาง",
-            "zh-CN": "居中",
-            "zh-TW": "置中"
-          }
-        }
-      ]
-    },
     {
       "type": "image_picker",
       "id": "logo",

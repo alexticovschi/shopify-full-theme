@@ -90,6 +90,15 @@ body {
 
   &__link {
     padding: 0 20px;
+
+    .site-header__cart {
+      padding: 0;
+    }
+
+    .site-header__cart-count {
+      right: -4px;
+      top: -3px;
+    }
   }
 
   &__dropdown {
@@ -131,7 +140,7 @@ body {
   display: none;
 
   &.active {
-    display: block;
+    // display: block;
   }
 
   &__logo {
