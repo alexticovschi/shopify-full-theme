@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Shopify Theme</title>
+    <link href="assets/reset.css" rel="stylesheet" />
+    <link
+      crossorigin="anonymous"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link href="scss/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__logo">
+        <a href="#">Storename</a>
+      </div>
+      <ul class="header__menu">
+        <li class="header__link">
+          <a href="#">About</a>
+        </li>
+        <li class="header__link header__dropdown">
+          <a href="#">About</a>
+
+          <div class="header__sub-menu">
+            <a class="header__sub-link" href="#">Link 1</a>
+            <a class="header__sub-link" href="#">Link 2</a>
+            <a class="header__sub-link" href="#">Link 3</a>
+          </div>
+        </li>
+        <li class="header__open-mobile-menu open-menu">
+          <i aria-hidden="true" class="fa fa-bars"></i>
+        </li>
+      </ul>
+    </header>
+    <section class="mobile-menu active">
+      <div class="mobile-menu__logo">
+        <div class="mobile-menu__close-menu close-menu">
+          <i aria-hidden="true" class="fa fa-times"></i>
+        </div>
+        <a href="#">Storename</a>
+      </div>
+      <ul class="mobile-menu__list">
+        <li class="mobile-menu__link">
+          <a href="#">About</a>
+        </li>
+        <li class="mobile-menu__link mobile-menu__dropdown">
+          <a href="#">Products</a>
+
+          <div class="mobile-menu__sub-menu">
+            <a class="mobile-menu__sub-link" href="#">Shirts</a>
+            <a class="mobile-menu__sub-link" href="#">Shoes</a>
+            <a class="mobile-menu__sub-link" href="#">Accessories</a>
+          </div>
+        </li>
+        <li class="mobile-menu__link">
+          <a href="#">About</a>
+        </li>
+        <li class="mobile-menu__link mobile-menu__dropdown">
+          <a href="#">About</a>
+
+          <div class="mobile-menu__sub-menu">
+            <a class="mobile-menu__sub-link" href="#">Link 1</a>
+            <a class="mobile-menu__sub-link" href="#">Link 2</a>
+            <a class="mobile-menu__sub-link" href="#">Link 3</a>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class="jumbo">
+      <div class="jumbo__bg-image"></div>
+      <div class="jumbo__transparent-color"></div>
+      <div class="jumbo__titles">
+        <h1 class="jumbo__title">OFF WHITE</h1>
+        <h2 class="jumbo__subtitle">New Collection</h2>
+      </div>
+      <div class="jumbo__state">
+        <span class="jumbo__state__number">01</span>
+      </div>
+      <div class="jumbo__store-info">
+        <img alt="" src="assets/store.jpg" />
+        <img alt="" src="assets/jumbobg.jpg" />
+        <img alt="" src="assets/guymodel.jpg" />
+        <img alt="" src="assets/summer-girl.jpg" />
+      </div>
+    </section>
+    <section class="collections">
+      <div class="row">
+        <div class="col-md-6 collections__left-collection">
+          <div class="collections__left-collection-wrapper">
+            <div class="collections__overlay"></div>
+            <img
+              alt=""
+              class="collections__left-collection-img"
+              src="assets/summer-girl.jpg"
+            />
+          </div>
+
+          <span
+            class="collections__left-collection__collection-title l-coll-title"
+          >
+            <span
+              >Summer
+              <br />
+              Collection</span
+            >
+          </span>
+        </div>
+
+        <div class="col-md-6 collections__right-collection">
+          <div class="collections__right-collection__bg">
+            <div class="collections__right-collection__img-wrapper">
+              <img
+                alt=""
+                class="collections__right-collection__img"
+                src="assets/guymodel.jpg"
+              />
+
+              <span
+                class="collections__right-collection__collection-title r-coll-title"
+              >
+                <span>Trending</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      class="off-sale"
+      style="background-image: url('assets/friends.jpg');"
+    >
+      <div class="off-sale__overlay">
+        <span class="off-sale__number">80%</span>
+        <span class="off-sale__title">OFF SALE</span>
+        <a class="off-sale__link" href="#">VIEW</a>
+      </div>
+    </section>
+    <section class="products">
+      <h2 class="products__title">Top Products</h2>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-3 product">
+            <a class="product__bg" href="#">
+              <img
+                alt="product"
+                class="product__img"
+                src="assets/product.png"
+              />
+              <div class="product__overlay">
+                <span class="product__title">Jordan Air Jordan 5 Retro</span>
+                <span class="product__title">&#163;349.99</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-3 product">
+            <a class="product__bg" href="#">
+              <img
+                alt="product"
+                class="product__img"
+                src="assets/product.png"
+              />
+              <div class="product__overlay">
+                <span class="product__title">Jordan Air Jordan 5 Retro</span>
+                <span class="product__title">&#163;349.99</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-3 product">
+            <a class="product__bg" href="#">
+              <img
+                alt="product"
+                class="product__img"
+                src="assets/product.png"
+              />
+              <div class="product__overlay">
+                <span class="product__title">Jordan Air Jordan 5 Retro</span>
+                <span class="product__title">&#163;349.99</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-3 product">
+            <a class="product__bg" href="#">
+              <img
+                alt="product"
+                class="product__img"
+                src="assets/product.png"
+              />
+              <div class="product__overlay">
+                <span class="product__title">Jordan Air Jordan 5 Retro</span>
+                <span class="product__title">&#163;349.99</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-3 product">
+            <a class="product__bg" href="#">
+              <img
+                alt="product"
+                class="product__img"
+                src="assets/product.png"
+              />
+              <div class="product__overlay">
+                <span class="product__title">Jordan Air Jordan 5 Retro</span>
+                <span class="product__title">&#163;349.99</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-3 product">
+            <a class="product__bg" href="#">
+              <img
+                alt="product"
+                class="product__img"
+                src="assets/product.png"
+              />
+              <div class="product__overlay">
+                <span class="product__title">Jordan Air Jordan 5 Retro</span>
+                <span class="product__title">&#163;349.99</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-3 product">
+            <a class="product__bg" href="#">
+              <img
+                alt="product"
+                class="product__img"
+                src="assets/product.png"
+              />
+              <div class="product__overlay">
+                <span class="product__title">Jordan Air Jordan 5 Retro</span>
+                <span class="product__title">&#163;349.99</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-3 product">
+            <a class="product__bg" href="#">
+              <img
+                alt="product"
+                class="product__img"
+                src="assets/product.png"
+              />
+              <div class="product__overlay">
+                <span class="product__title">Jordan Air Jordan 5 Retro</span>
+                <span class="product__title">&#163;349.99</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="footer__menu footer-fade-in">
+                  <span class="footer__menu-title">Storename</span>
+                  <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Career</a></li>
+                    <li><a href="#">Policy</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="footer__menu footer-fade-in">
+                  <span class="footer__menu-title">Storename</span>
+                  <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Career</a></li>
+                    <li><a href="#">Policy</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="footer__menu footer-fade-in">
+                  <span class="footer__menu-title">Storename</span>
+                  <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Career</a></li>
+                    <li><a href="#">Policy</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="footer-fade-in">
+              <div class="footer__social-title">Follow Us</div>
+              <ul class="footer__social-icons">
+                <li>
+                  <a href="#">
+                    <i aria-hidden="true" class="fa fa-facebook"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i aria-hidden="true" class="fa fa-instagram"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i aria-hidden="true" class="fa fa-google"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i aria-hidden="true" class="fa fa-twitter"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i aria-hidden="true" class="fa fa-youtube"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i aria-hidden="true" class="fa fa-pinterest"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <hr />
+            <span class="footer__address footer-fade-in"
+              >Storename 23 High Street, London, UK</span
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.1/gsap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>
