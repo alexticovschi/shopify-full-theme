@@ -1,10 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Shopify Theme</title>
-    <link href="assets/reset.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="{{ settings.color_button }}" />
+
+    {%- if canonical_url != blank -%}
+    <link rel="canonical" href="{{ canonical_url }}" />
+    {%- endif -%} {%- if settings.favicon != blank -%}
+    <link
+      rel="shortcut icon"
+      href="{{ settings.favicon | img_url: '32x32' }}"
+      type="image/png"
+    />
+    {%- endif -%} {%- capture seo_title -%} {%- if request.page_type == 'search'
+    and search.performed == true -%}
+    {{
+      'general.search.heading' | t: count:search.results_count
+    }}:
+    {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+    {%- else -%}
+    {{
+      page_title
+    }}
+    {%- endif -%} {%- if current_tags -%} {%- assign meta_tags = current_tags |
+    join: ', ' -%} &ndash;
+    {{ 'general.meta.tags' | t: tags: meta_tags -}}
+    {%- endif -%} {%- if current_page != 1 -%} &ndash;
+    {{
+      'general.meta.page' | t: page:current_page
+    }}
+    {%- endif -%} {%- assign escaped_page_title = page_title | escape -%} {%-
+    unless escaped_page_title contains shop.name -%} &ndash;
+    {{
+      shop.name
+    }}
+    {%- endunless -%} {%- endcapture -%}
+    <title>{{ seo_title | strip }}</title>
+    {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}" />
+    {%- endif -%} {% include 'social-meta-tags' %}
+    <!-- <link href="assets/reset.css" rel="stylesheet" /> -->
+    {{
+      'reset.css' | asset_url | stylesheet_tag
+    }}
     <link
       crossorigin="anonymous"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -15,245 +55,97 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
-    <link href="scss/styles.css" rel="stylesheet" />
+    <!-- <link href="assets/styles.css" rel="stylesheet" /> -->
+    {{
+      'theme.scss.css' | asset_url | stylesheet_tag
+    }}
+    {{
+      'styles.css' | asset_url | stylesheet_tag
+    }}
+
+    <script>
+      var theme = {
+        breakpoints: {
+          medium: 750,
+          large: 990,
+          widescreen: 1400
+        },
+        strings: {
+          addToCart: {{ 'products.product.add_to_cart' | t | json }},
+          soldOut: {{ 'products.product.sold_out' | t | json }},
+          unavailable: {{ 'products.product.unavailable' | t | json }},
+          regularPrice: {{ 'products.product.regular_price' | t | json }},
+          salePrice: {{ 'products.product.sale_price' | t | json }},
+          sale: {{ 'products.product.on_sale' | t | json }},
+          fromLowestPrice: {{ 'products.product.from_lowest_price_html' | t: lowest_price: '[price]' | json }},
+          vendor: {{'products.product.vendor' | t | json }},
+          showMore: {{ 'general.filters.show_more' | t | json }},
+          showLess: {{ 'general.filters.show_less' | t | json }},
+          searchFor: {{ 'general.search.search_for' | t | json }},
+          addressError: {{ 'sections.map.address_error' | t | json }},
+          addressNoResults: {{ 'sections.map.address_no_results' | t | json }},
+          addressQueryLimit: {{ 'sections.map.address_query_limit_html' | t | json }},
+          authError: {{ 'sections.map.auth_error_html' | t | json }},
+          newWindow: {{ 'general.accessibility.link_messages.new_window' | t | json }},
+          external: {{ 'general.accessibility.link_messages.external' | t | json }},
+          newWindowExternal: {{ 'general.accessibility.link_messages.new_window_and_external' | t | json }},
+          removeLabel: {{ 'cart.label.remove' | t: product: '[product]' | json }},
+          update: {{ 'cart.label.update' | t | json }},
+          quantity: {{ 'cart.label.quantity' | t | json }},
+          discountedTotal: {{ 'cart.label.discounted_total' | t | json }},
+          regularTotal: {{ 'cart.label.regular_total' | t | json }},
+          priceColumn: {{ 'cart.label.price_column' | t | json }},
+          quantityMinimumMessage: {{ 'products.product.quantity_minimum_message' | t | json }},
+          cartError: {{ 'cart.general.cart_error' | t | json }},
+          removedItemMessage: {{ 'cart.general.removed_item_html' | t: quantity: '[quantity]', link: '[link]' | json }},
+          unitPrice: {{ 'products.product.unit_price_label' | t | json }},
+          unitPriceSeparator: {{ 'general.accessibility.unit_price_separator' | t | json }},
+          oneCartCount: {{ 'cart.popup.cart_count' | t: count: 1 | json }},
+          otherCartCount: {{ 'cart.popup.cart_count' | t: count: '[count]' | json }},
+          quantityLabel: {{ 'cart.popup.quantity_label' | t: quantity_count: '[count]' | json }},
+          products: {{ 'general.search.products' | t | json }},
+          loading: {{ 'general.search.loading' | t | json }},
+          number_of_results: {{ 'general.search.number_of_results' | t: result_number: '[result_number]', results_count: '[results_count]' | json }},
+          number_of_results_found: {{ 'general.search.number_of_results_found' | t: results_count: '[results_count]' | json }},
+          one_result_found: {{ 'general.search.one_result_found' | t | json }}
+        },
+        moneyFormat: {{ shop.money_format | json }},
+        moneyFormatWithCurrency: {{ shop.money_with_currency_format | json }},
+        settings: {
+          predictiveSearchEnabled: {{ settings.predictive_search_enabled | json }},
+          predictiveSearchShowPrice: {{ settings.predictive_search_show_price | json }},
+          predictiveSearchShowVendor: {{ settings.predictive_search_show_vendor | json }}
+        }
+      }
+
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+
+    {%- if request.page_type contains 'customers/' -%}
+    <script
+      src="{{ 'shopify_common.js' | shopify_asset_url }}"
+      defer="defer"
+    ></script>
+    {%- endif -%}
+
+    <script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script>
+    <script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+
+    {{
+      content_for_header
+    }}
   </head>
-  <body>
-    <header class="header">
-      <div class="header__logo">
-        <a href="#">Storename</a>
-      </div>
-      <ul class="header__menu">
-        <li class="header__link">
-          <a href="#">About</a>
-        </li>
-        <li class="header__link header__dropdown">
-          <a href="#">About</a>
+  <body class="template-{{ request.page_type | handle }}">
+    <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{
+      'general.accessibility.skip_to_content' | t
+    }}</a>
 
-          <div class="header__sub-menu">
-            <a class="header__sub-link" href="#">Link 1</a>
-            <a class="header__sub-link" href="#">Link 2</a>
-            <a class="header__sub-link" href="#">Link 3</a>
-          </div>
-        </li>
-        <li class="header__open-mobile-menu open-menu">
-          <i aria-hidden="true" class="fa fa-bars"></i>
-        </li>
-      </ul>
-    </header>
-    <section class="mobile-menu active">
-      <div class="mobile-menu__logo">
-        <div class="mobile-menu__close-menu close-menu">
-          <i aria-hidden="true" class="fa fa-times"></i>
-        </div>
-        <a href="#">Storename</a>
-      </div>
-      <ul class="mobile-menu__list">
-        <li class="mobile-menu__link">
-          <a href="#">About</a>
-        </li>
-        <li class="mobile-menu__link mobile-menu__dropdown">
-          <a href="#">Products</a>
+    {%- if settings.enable_ajax -%} {% include 'cart-popup' %} {%- endif -%} {%
+    section 'header' %}
 
-          <div class="mobile-menu__sub-menu">
-            <a class="mobile-menu__sub-link" href="#">Shirts</a>
-            <a class="mobile-menu__sub-link" href="#">Shoes</a>
-            <a class="mobile-menu__sub-link" href="#">Accessories</a>
-          </div>
-        </li>
-        <li class="mobile-menu__link">
-          <a href="#">About</a>
-        </li>
-        <li class="mobile-menu__link mobile-menu__dropdown">
-          <a href="#">About</a>
+    {{ content_for_layout }}
 
-          <div class="mobile-menu__sub-menu">
-            <a class="mobile-menu__sub-link" href="#">Link 1</a>
-            <a class="mobile-menu__sub-link" href="#">Link 2</a>
-            <a class="mobile-menu__sub-link" href="#">Link 3</a>
-          </div>
-        </li>
-      </ul>
-    </section>
-    <section class="jumbo">
-      <div class="jumbo__bg-image"></div>
-      <div class="jumbo__transparent-color"></div>
-      <div class="jumbo__titles">
-        <h1 class="jumbo__title">OFF WHITE</h1>
-        <h2 class="jumbo__subtitle">New Collection</h2>
-      </div>
-      <div class="jumbo__state">
-        <span class="jumbo__state__number">01</span>
-      </div>
-      <div class="jumbo__store-info">
-        <img alt="" src="assets/store.jpg" />
-        <img alt="" src="assets/jumbobg.jpg" />
-        <img alt="" src="assets/guymodel.jpg" />
-        <img alt="" src="assets/summer-girl.jpg" />
-      </div>
-    </section>
-    <section class="collections">
-      <div class="row">
-        <div class="col-md-6 collections__left-collection">
-          <div class="collections__left-collection-wrapper">
-            <div class="collections__overlay"></div>
-            <img
-              alt=""
-              class="collections__left-collection-img"
-              src="assets/summer-girl.jpg"
-            />
-          </div>
-
-          <span
-            class="collections__left-collection__collection-title l-coll-title"
-          >
-            <span
-              >Summer
-              <br />
-              Collection</span
-            >
-          </span>
-        </div>
-
-        <div class="col-md-6 collections__right-collection">
-          <div class="collections__right-collection__bg">
-            <div class="collections__right-collection__img-wrapper">
-              <img
-                alt=""
-                class="collections__right-collection__img"
-                src="assets/guymodel.jpg"
-              />
-
-              <span
-                class="collections__right-collection__collection-title r-coll-title"
-              >
-                <span>Trending</span>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section
-      class="off-sale"
-      style="background-image: url('assets/friends.jpg');"
-    >
-      <div class="off-sale__overlay">
-        <span class="off-sale__number">80%</span>
-        <span class="off-sale__title">OFF SALE</span>
-        <a class="off-sale__link" href="#">VIEW</a>
-      </div>
-    </section>
-    <section class="products">
-      <h2 class="products__title">Top Products</h2>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 col-lg-3 product">
-            <a class="product__bg" href="#">
-              <img
-                alt="product"
-                class="product__img"
-                src="assets/product.png"
-              />
-              <div class="product__overlay">
-                <span class="product__title">Jordan Air Jordan 5 Retro</span>
-                <span class="product__title">&#163;349.99</span>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-3 product">
-            <a class="product__bg" href="#">
-              <img
-                alt="product"
-                class="product__img"
-                src="assets/product.png"
-              />
-              <div class="product__overlay">
-                <span class="product__title">Jordan Air Jordan 5 Retro</span>
-                <span class="product__title">&#163;349.99</span>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-3 product">
-            <a class="product__bg" href="#">
-              <img
-                alt="product"
-                class="product__img"
-                src="assets/product.png"
-              />
-              <div class="product__overlay">
-                <span class="product__title">Jordan Air Jordan 5 Retro</span>
-                <span class="product__title">&#163;349.99</span>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-3 product">
-            <a class="product__bg" href="#">
-              <img
-                alt="product"
-                class="product__img"
-                src="assets/product.png"
-              />
-              <div class="product__overlay">
-                <span class="product__title">Jordan Air Jordan 5 Retro</span>
-                <span class="product__title">&#163;349.99</span>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-3 product">
-            <a class="product__bg" href="#">
-              <img
-                alt="product"
-                class="product__img"
-                src="assets/product.png"
-              />
-              <div class="product__overlay">
-                <span class="product__title">Jordan Air Jordan 5 Retro</span>
-                <span class="product__title">&#163;349.99</span>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-3 product">
-            <a class="product__bg" href="#">
-              <img
-                alt="product"
-                class="product__img"
-                src="assets/product.png"
-              />
-              <div class="product__overlay">
-                <span class="product__title">Jordan Air Jordan 5 Retro</span>
-                <span class="product__title">&#163;349.99</span>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-3 product">
-            <a class="product__bg" href="#">
-              <img
-                alt="product"
-                class="product__img"
-                src="assets/product.png"
-              />
-              <div class="product__overlay">
-                <span class="product__title">Jordan Air Jordan 5 Retro</span>
-                <span class="product__title">&#163;349.99</span>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-6 col-lg-3 product">
-            <a class="product__bg" href="#">
-              <img
-                alt="product"
-                class="product__img"
-                src="assets/product.png"
-              />
-              <div class="product__overlay">
-                <span class="product__title">Jordan Air Jordan 5 Retro</span>
-                <span class="product__title">&#163;349.99</span>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
     <footer class="footer">
       <div class="container">
         <div class="row">
@@ -342,6 +234,19 @@
         </div>
       </div>
     </footer>
+
+    <div id="slideshow-info" class="visually-hidden" aria-hidden="true">
+      {{- 'sections.slideshow.navigation_instructions' | t -}}
+    </div>
+
+    <ul hidden>
+      <li id="a11y-refresh-page-message">
+        {{ 'general.accessibility.refresh_page' | t }}
+      </li>
+      <li id="a11y-selection-message">
+        {{ 'general.accessibility.selection_help' | t }}
+      </li>
+    </ul>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.1/gsap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
