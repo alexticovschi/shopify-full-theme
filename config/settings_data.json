@@ -1,5 +1,10 @@
 {
   "current": {
+    "social_twitter_link": "https://twitter.com/shopify",
+    "social_facebook_link": "https://facebook.com/shopify",
+    "social_pinterest_link": "https://pinterest.com/shopify",
+    "social_instagram_link": "http://instagram.com/shopify",
+    "social_youtube_link": "https://www.youtube.com/shopify",
     "sections": {
       "header": { "type": "header", "settings": {} },
       "hero-1": {
@@ -46,10 +51,9 @@
       "footer": {
         "type": "footer",
         "blocks": {
-          "footer-0": { "type": "link_list", "settings": {} },
-          "footer-1": { "type": "newsletter", "settings": {} }
+          "footer-0": { "type": "link_list", "settings": {} }
         },
-        "block_order": ["footer-0", "footer-1"],
+        "block_order": ["footer-0"],
         "settings": { "show_payment_icons": true }
       }
     },
@@ -65,6 +69,11 @@
   },
   "presets": {
     "Default": {
+      "social_twitter_link": "https://twitter.com/shopify",
+      "social_facebook_link": "https://facebook.com/shopify",
+      "social_pinterest_link": "https://pinterest.com/shopify",
+      "social_instagram_link": "http://instagram.com/shopify",
+      "social_youtube_link": "https://www.youtube.com/shopify",
       "sections": {
         "header": { "type": "header", "settings": {} },
         "hero-1": {
@@ -313,10 +322,9 @@
           "type": "footer",
           "blocks": {
             "link_list": { "type": "link_list", "settings": {} },
-            "text": { "type": "text", "settings": {} },
-            "newsletter": { "type": "newsletter", "settings": {} }
+            "text": { "type": "text", "settings": {} }
           },
-          "block_order": ["link_list", "text", "newsletter"],
+          "block_order": ["link_list", "text"],
           "settings": {}
         }
       },

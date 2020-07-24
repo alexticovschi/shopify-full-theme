@@ -14,7 +14,6 @@
   .footer__address {
     color: {{ section.settings.color_footer_text }};
   }
-
 </style>
 
 <footer class="footer">
@@ -34,10 +33,7 @@
                         {{ link.title | escape }}
                       </a>
                     </li>
-                  {% endfor %}
-                                    {% comment %} <li><a href="#">Contact</a></li>
-                  <li><a href="#">Career</a></li>
-                  <li><a href="#">Policy</a></li> {% endcomment %}
+                  {% endfor %}       
                 </ul>
               </div>
             </div>
@@ -48,36 +44,48 @@
         <div class="footer-fade-in">
           <div class="footer__social-title">Follow Us</div>
           <ul class="footer__social-icons">
-            <li>
-              <a href="#">
-                <i aria-hidden="true" class="fa fa-facebook"></i>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i aria-hidden="true" class="fa fa-instagram"></i>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i aria-hidden="true" class="fa fa-google"></i>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i aria-hidden="true" class="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i aria-hidden="true" class="fa fa-youtube"></i>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i aria-hidden="true" class="fa fa-pinterest"></i>
-              </a>
-            </li>
+            {% if settings.social_facebook_link != blank %}
+              <li>
+                <a href="{{ settings.social_facebook_link }}">
+                  <i aria-hidden="true" class="fa fa-facebook"></i>
+                </a>
+              </li>
+            {% endif %}
+            {% if settings.social_instagram_link != blank %}
+              <li>
+                <a href="{{ settings.social_instagram_link }}">
+                  <i aria-hidden="true" class="fa fa-instagram"></i>
+                </a>
+              </li>
+            {% endif %}
+            {% if settings.social_google_link != blank %}
+              <li>
+                <a href="{{ settings.social_google_link }}">
+                  <i aria-hidden="true" class="fa fa-google"></i>
+                </a>
+              </li>
+            {% endif %}
+            {% if settings.social_twitter_link != blank %}
+              <li>
+                <a href="{{ settings.social_twitter_link }}">
+                  <i aria-hidden="true" class="fa fa-twitter"></i>
+                </a>
+              </li>
+            {% endif %}
+            {% if settings.social_youtube_link != blank %}
+              <li>
+                <a href="{{ settings.social_youtube_link }}">
+                  <i aria-hidden="true" class="fa fa-youtube"></i>
+                </a>
+              </li>
+            {% endif %}
+            {% if settings.social_pinterest_link != blank %}
+              <li>
+                <a href="{{ settings.social_pinterest_link }}">
+                  <i aria-hidden="true" class="fa fa-pinterest"></i>
+                </a>
+              </li>
+            {% endif %}
           </ul>
         </div>
       </div>
@@ -85,12 +93,11 @@
     <div class="row">
       <div class="col-sm-12">
         <hr/>
-        <span class="footer__address footer-fade-in">Storename 23 High Street, London, UK</span>
+        <span class="footer__address footer-fade-in">{{ section.settings.footer_bottom_text }}</span>
       </div>
     </div>
   </div>
 </footer>
-
 
 {% schema %}
 {
@@ -181,6 +188,12 @@
       "id": "color_footer_text",
       "label": "Footer Text",
       "default": "#1b1b1b"
+    },
+    {
+      "type": "textarea",
+      "id": "footer_bottom_text",
+      "label": "Text for bottom of footer",
+      "default": "Storename 23 High Street, London, UK"
     }
   ],
   "blocks": [
