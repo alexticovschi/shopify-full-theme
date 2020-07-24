@@ -120,8 +120,7 @@
         "footer": {
           "type": "footer",
           "blocks": {
-            "footer-0": { "type": "link_list", "settings": {} },
-            "footer-1": { "type": "newsletter", "settings": {} }
+            "footer-0": { "type": "link_list", "settings": {} }
           },
           "block_order": ["footer-0", "footer-1"],
           "settings": { "show_payment_icons": true }
@@ -321,10 +320,9 @@
         "footer": {
           "type": "footer",
           "blocks": {
-            "link_list": { "type": "link_list", "settings": {} },
-            "text": { "type": "text", "settings": {} }
+            "link_list": { "type": "link_list", "settings": {} }
           },
-          "block_order": ["link_list", "text"],
+          "block_order": ["link_list"],
           "settings": {}
         }
       },
