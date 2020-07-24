@@ -22,39 +22,26 @@
     <div class="row">
       <div class="col-md-6">
         <div class="row">
-          <div class="col-md-4">
-            <div class="footer__menu footer-fade-in">
-              <span class="footer__menu-title">Storename</span>
-              <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Career</a></li>
-                <li><a href="#">Policy</a></li>
-              </ul>
+          {% for block in section.blocks %}
+            {%- assign footer_linklist = block.settings.menu -%}
+            <div class="col-md-4">
+              <div class="footer__menu footer-fade-in">
+                <span class="footer__menu-title">{{ block.settings.title }}</span>
+                <ul>
+                  {% for link in linklists[footer_linklist].links %}
+                    <li>
+                      <a href="{{ link.url }}">
+                        {{ link.title | escape }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                                    {% comment %} <li><a href="#">Contact</a></li>
+                  <li><a href="#">Career</a></li>
+                  <li><a href="#">Policy</a></li> {% endcomment %}
+                </ul>
+              </div>
             </div>
-          </div>
-          <div class="col-md-4">
-            <div class="footer__menu footer-fade-in">
-              <span class="footer__menu-title">Storename</span>
-              <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Career</a></li>
-                <li><a href="#">Policy</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="footer__menu footer-fade-in">
-              <span class="footer__menu-title">Storename</span>
-              <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Career</a></li>
-                <li><a href="#">Policy</a></li>
-              </ul>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
       <div class="col-md-6">
@@ -127,7 +114,7 @@
     "zh-CN": "页脚",
     "zh-TW": "頁尾"
   },
-  "max_blocks": 4,
+  "max_blocks": 3,
   "settings": [
     {
       "type": "header",
@@ -290,210 +277,8 @@
           "default": "footer"
         }
       ]
-    },
-    {
-      "type": "text",
-      "name": {
-        "da": "Tekst",
-        "de": "Text",
-        "en": "Text",
-        "es": "Texto",
-        "fi": "Teksti",
-        "fr": "Texte",
-        "hi": "टेक्स्ट",
-        "it": "Testo",
-        "ja": "テキスト",
-        "ko": "텍스트",
-        "nb": "Tekst",
-        "nl": "Tekst",
-        "pt-BR": "Texto",
-        "pt-PT": "Texto",
-        "sv": "Text",
-        "th": "ข้อความ",
-        "zh-CN": "文本",
-        "zh-TW": "文字"
-      },
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": {
-            "da": "Overskrift",
-            "de": "Überschrift",
-            "en": "Heading",
-            "es": "Título",
-            "fi": "Otsake",
-            "fr": "Titre",
-            "hi": "शीर्षक",
-            "it": "Heading",
-            "ja": "見出し",
-            "ko": "제목",
-            "nb": "Overskrift",
-            "nl": "Kop",
-            "pt-BR": "Título",
-            "pt-PT": "Título",
-            "sv": "Rubrik",
-            "th": "ส่วนหัว",
-            "zh-CN": "标题",
-            "zh-TW": "標題"
-          },
-          "default": {
-            "da": "Fortæl om din virksomhed",
-            "de": "Reden Sie über Ihr Unternehmen",
-            "en": "Talk about your business",
-            "es": "Habla sobre tu negocio",
-            "fi": "Kerro yrityksestäsi",
-            "fr": "Parlez de votre entreprise",
-            "hi": "अपने व्यवसाय के बारे में बात करें",
-            "it": "Parla della tua attività commerciale",
-            "ja": "あなたのビジネスについて語る",
-            "ko": "비즈니스에 대한 이야기하기",
-            "nb": "Snakk om bedriften din",
-            "nl": "Vertel over je bedrijf",
-            "pt-BR": "Fale sobre o seu negócio",
-            "pt-PT": "Fale sobre o seu negócio",
-            "sv": "Prata om ditt företag",
-            "th": "พูดถึงธุรกิจของคุณ",
-            "zh-CN": "介绍您的业务",
-            "zh-TW": "描述您的商家"
-          }
-        },
-        {
-          "type": "richtext",
-          "id": "text",
-          "label": {
-            "da": "Tekst",
-            "de": "Text",
-            "en": "Text",
-            "es": "Texto",
-            "fi": "Teksti",
-            "fr": "Texte",
-            "hi": "टेक्स्ट",
-            "it": "Testo",
-            "ja": "テキスト",
-            "ko": "텍스트",
-            "nb": "Tekst",
-            "nl": "Tekst",
-            "pt-BR": "Texto",
-            "pt-PT": "Texto",
-            "sv": "Text",
-            "th": "ข้อความ",
-            "zh-CN": "文本",
-            "zh-TW": "文字"
-          },
-          "default": {
-            "da": "<p>Del butiksoplysninger, reklamer eller brandindhold med dine kunder.</p>",
-            "de": "<p>Teilen Sie Ihre Shop-Details, Werbeaktionen oder Markeninhalte mit Ihren Kunden.</p>",
-            "en": "<p>Share store details, promotions, or brand content with your customers.</p>",
-            "es": "<p>Comparte detalles de la tienda, promociones o contenido de la marca con tus clientes.</p>",
-            "fi": "<p>Jaa myymälän tiedot, tarjoukset tai brändin sisältö asiakkaittesi kanssa.</p>",
-            "fr": "<p>Partagez les détails de la boutique, les promotions ou le contenu de la marque avec vos clients.</p>",
-            "hi": "<p>अपने ग्राहकों के साथ स्टोर विवरण, प्रचार या ब्रांड सामग्री साझा करें.</p>",
-            "it": "<p>Condividi dettagli del negozio, promozioni o contenuti del brand con i clienti.</p>",
-            "ja": "<p>ストア詳細、プロモーション、ブランドのコンテンツをお客様と共有する。</p>",
-            "ko": "<p>스토어 세부 정보, 프로모션 또는 브랜드 콘텐츠를 고객과 공유하십시오.</p>",
-            "nb": "<p>Del butikkdetaljer, kampanjer eller merkevareinnhold med kundene dine.</p>",
-            "nl": "<p>Deel winkeldetails, promoties of merkcontent met je klanten.</p>",
-            "pt-BR": "<p>Compartilhe informações da loja, promoções ou conteúdo da marca com seus clientes.</p>",
-            "pt-PT": "<p>Partilhe detalhes da loja, promoções ou conteúdo de marca com os seus clientes.</p>",
-            "sv": "<p>Dela butikens detaljer, kampanjer eller varumärkesinnehåll med dina kunder.</p>",
-            "th": "<p>แชร์รายละเอียดร้านค้า โปรโมชัน หรือเนื้อหาแบรนด์กับลูกค้าของคุณ</p>",
-            "zh-CN": "<p>与您的客户共享商店详细信息、促销信息或品牌内容。</p>",
-            "zh-TW": "<p>與顧客分享商店的詳細資訊、宣傳活動或品牌內容。</p>"
-          }
-        }
-      ]
-    },
-    {
-      "type": "newsletter",
-      "limit": 1,
-      "name": {
-        "da": "Tilmelding til nyhedsbrev",
-        "de": "Newsletter-Anmeldung",
-        "en": "Newsletter signup",
-        "es": "Suscripción al boletín",
-        "fi": "Uutiskirjeen tilaus",
-        "fr": "Inscription",
-        "hi": "न्यूज़लेटर साइनअप",
-        "it": "Iscriviti alla Newsletter",
-        "ja": "ニュースレターの登録",
-        "ko": "뉴스레터 신청",
-        "nb": "Registrering for nyhetsbrev",
-        "nl": "Nieuwsbriefaanmelding",
-        "pt-BR": "Assinatura da newsletter",
-        "pt-PT": "Registo na newsletter",
-        "sv": "Nyhetsbrevsregistrering",
-        "th": "การสมัครรับจดหมายข่าว",
-        "zh-CN": "新闻通讯注册",
-        "zh-TW": "訂閱電子報"
-      },
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": {
-            "da": "Overskrift",
-            "de": "Überschrift",
-            "en": "Heading",
-            "es": "Título",
-            "fi": "Otsake",
-            "fr": "Titre",
-            "hi": "शीर्षक",
-            "it": "Heading",
-            "ja": "見出し",
-            "ko": "제목",
-            "nb": "Overskrift",
-            "nl": "Kop",
-            "pt-BR": "Título",
-            "pt-PT": "Título",
-            "sv": "Rubrik",
-            "th": "ส่วนหัว",
-            "zh-CN": "标题",
-            "zh-TW": "標題"
-          },
-          "info": {
-            "da": "Abonnenter bliver føjet til [kundelisten](/admin/customers?query=&accepts_marketing=1) for \"accepterer markedsføring\".",
-            "de": "Abonnenten werden zu Ihrer Liste „akzeptiert Marketingmaterial“ hinzugefügt [Kundenliste.](/admin/customers?query=&accepts_marketing=1)",
-            "en": "Subscribers will be added to your “accepts marketing” [customer list.](/admin/customers?query=&accepts_marketing=1)",
-            "es": "Se añadirá los suscriptores a tu [lista de clientes.](/admin/customers?query=&accepts_marketing=1) \"acepta marketing\".",
-            "fi": "Tilaajat lisätään \"hyväksyy markkinointi\" [-asiakasluetteloosi. ](/admin/customers?query=&accepts_marketing=1)",
-            "fr": "Les abonnés seront ajoutés à votre [liste de clients](/admin/customers?query=&accepts_marketing=1) « Accepte le marketing ».",
-            "hi": "सदस्यों को आपकी “मार्केटिंग स्वीकार करता है” [customer list.](/admin/customers?query=&accepts_marketing=1) में जोड़ दिया जाएगा",
-            "it": "Gli iscritti verranno aggiunti al tuo [elenco clienti.](/admin/customers?query=&accepts_marketing=1) «accetta marketing»",
-            "ja": "購読者は「マーケティングを受け入れる」[顧客リスト](/admin/customers?query=&accepts_marketing=1) に追加されます。",
-            "ko": "가입자가 \"마케팅 수락\" [고객 목록.](/admin/customers?query=&accepts_marketing=1)에 추가됩니다.",
-            "nb": "Abonnenter vil bli lagt til i «aksepterer markedsføring» [kundeliste.](/admin/customers?query=&accepts_marketing=1)",
-            "nl": "Abonnees worden toegevoegd aan je \"accepteert marketing\" [klantenlijst.](/admin/customers?query=&accepts_marketing=1)",
-            "pt-BR": "Os assinantes serão adicionados à “aceita marketing” [lista de clientes. ](/admin/customers?query=&accepts_marketing=1)",
-            "pt-PT": "Os subscritores serão adicionados à sua lista de \"aceitam marketing\" [lista de clientes.](/admin/customers?query=&accepts_marketing=1)",
-            "sv": "Prenumeranter läggs till i din \"accepterar marknadsföring\" [kundlista. ](/admin/customers?query=&accepts_marketing=1)",
-            "th": "ระบบจะเพิ่มผู้สมัครใช้งานไปยังส่วน “ยอมรับการตลาด” ของคุณ [รายชื่อลูกค้า](/admin/customers?query=&accepts_marketing=1)",
-            "zh-CN": "订阅者将被添加到您的“接受营销”[客户列表](/admin/customers?query=&accepts_marketing=1)中。",
-            "zh-TW": "系統會將訂閱者新增至您的「接受行銷」[客戶清單。](/admin/customers?query=&accepts_marketing=1)"
-          },
-          "default": {
-            "da": "Nyhedsbrev",
-            "de": "Newsletter",
-            "en": "Newsletter",
-            "es": "Boletín",
-            "fi": "Uutiskirje",
-            "fr": "Newsletter",
-            "hi": "न्यूज़लेटर",
-            "it": "Newsletter",
-            "ja": "ニュースレター",
-            "ko": "뉴스레터",
-            "nb": "Nyhetsbrev",
-            "nl": "Nieuwsbrief",
-            "pt-BR": "Newsletter",
-            "pt-PT": "Newsletter",
-            "sv": "Nyhetsbrev",
-            "th": "จดหมายข่าว",
-            "zh-CN": "新闻通讯",
-            "zh-TW": "電子報"
-          }
-        }
-      ]
     }
   ]
 }
 {% endschema %}
+
