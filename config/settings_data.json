@@ -7,6 +7,10 @@
     "social_youtube_link": "https://www.youtube.com/shopify",
     "sections": {
       "header": { "type": "header", "settings": {} },
+      "jumbo": {
+        "type": "jumbo",
+        "settings": {}
+      },
       "hero-1": {
         "type": "hero",
         "settings": { "hero_size": "large", "text_size": "large" }
@@ -58,7 +62,7 @@
       }
     },
     "content_for_index": [
-      "hero-1",
+      "jumbo",
       "feature-row",
       "feature-columns",
       "collection",
@@ -76,6 +80,10 @@
       "social_youtube_link": "https://www.youtube.com/shopify",
       "sections": {
         "header": { "type": "header", "settings": {} },
+        "jumbo": {
+          "type": "jumbo",
+          "settings": {}
+        },
         "hero-1": {
           "type": "hero",
           "settings": { "hero_size": "large", "text_size": "large" }
@@ -127,7 +135,7 @@
         }
       },
       "content_for_index": [
-        "hero-1",
+        "jumbo",
         "feature-row",
         "feature-columns",
         "collection",
