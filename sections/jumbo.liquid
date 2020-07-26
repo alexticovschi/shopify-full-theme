@@ -1,5 +1,5 @@
 <section class="jumbo">
-  <div class="jumbo__bg-image"></div>
+  <div class="jumbo__bg-image" style="background: url('{{ section.settings.bg_image | img_url: '1200x' }}'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
   <div class="jumbo__transparent-color"></div>
   <div class="jumbo__titles">
     <h1 class="jumbo__title">OFF WHITE</h1>
@@ -37,10 +37,9 @@
       ],
       "default": "image",
       "info": "Do you want a Video or Image for the Background"
-    },
-        {
+    }, {
       "type": "image_picker",
-      "id": "image",
+      "id": "bg_image",
       "label": {
         "da": "Billede",
         "de": "Foto",
@@ -61,13 +60,11 @@
         "zh-CN": "图片",
         "zh-TW": "圖片"
       }
-    }, 
-    {
+    }, {
       "type": "text",
       "id": "video_url",
       "label": "Video URL"
-    },
-    {
+    }, {
       "type": "radio",
       "id": "video_type",
       "label": "Video Type",
@@ -82,8 +79,7 @@
       ],
       "default": "vimeo",
       "info": "Choose location where you uploaded the video"
-    }, 
-    {
+    }, {
       "type": "richtext",
       "id": "subheading",
       "label": {
