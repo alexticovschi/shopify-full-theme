@@ -408,9 +408,13 @@ a {
   padding-top: 2rem;
 }
 
-.jumbo__store-info img {
+.jumbo__store-info__link {
+  width: 100%;
+}
+
+.jumbo__store-info__img {
   height: 100%;
-  width: 25%;
+  width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   cursor: pointer;
@@ -421,7 +425,7 @@ a {
   margin-left: 0.5rem;
 }
 
-.jumbo__store-info img:hover {
+.jumbo__store-info__img:hover {
   -webkit-filter: saturate(60%);
           filter: saturate(60%);
 }

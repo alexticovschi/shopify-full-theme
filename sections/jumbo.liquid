@@ -17,10 +17,17 @@
     <span class="jumbo__state__number">01</span>
   </div>
   <div class="jumbo__store-info">
-    <img alt="" src="assets/store.jpg"/>
-    <img alt="" src="assets/jumbobg.jpg"/>
-    <img alt="" src="assets/guymodel.jpg"/>
-    <img alt="" src="assets/summer-girl.jpg"/>
+    {% for block in section.blocks %}
+      {% if block.settings.bottom_image != blank %}
+        <a class="jumbo__store-info__link" href="{{ block.settings.bottom_image_url }}">
+          <img class="jumbo__store-info__img" alt="bottom image" src="{{ block.settings.bottom_image | img_url: '300x' }}"/>
+        </a>
+      {% else %}
+        <a class="jumbo__store-info__link" href="#">
+          <img class="jumbo__store-info__img" alt="default image" src="{{ 'summer-girl.jpg' | asset_url }}"/>
+        </a>
+      {% endif %}
+    {% endfor %}
   </div>
 </section>
 
@@ -189,10 +196,51 @@
       }
     }
   ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Bottom Images",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "bottom_image",
+          "label": "Image"
+        }, {
+          "id": "bottom_image_url",
+          "type": "url",
+          "label": "Image URL"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
       "name": "Jumbo",
-      "category": "Image"
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "image",
+          "settings": {
+            "bottom_image_url": "#"
+          }
+        }, {
+          "type": "image",
+          "settings": {
+            "bottom_image_url": "#"
+          }
+        }, {
+          "type": "image",
+          "settings": {
+            "bottom_image_url": "#"
+          }
+        }, {
+          "type": "image",
+          "settings": {
+            "bottom_image_url": "#"
+          }
+        }
+      ]
     }
   ]
 }
