@@ -213,6 +213,16 @@ body {
     top: 0;
   }
 
+  &__bg-video {
+    background: var(--black-color);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    transform: scale(1.2);
+  }
+
   &__transparent-color {
     background: var(--jumbo-bg-color);
     height: 100vh;
