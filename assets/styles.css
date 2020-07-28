@@ -6,7 +6,7 @@
   --grey-color: rgb(204, 204, 204);
   --body-color: #f4f7fd;
   --jumbo-bg-color: rgba(33, 24, 42, 0.7);
-  --collections-overlay-color: rgba(255, 255, 000, 0.5);
+  --collections-overlay-color: #ffff0080;
   --right-collection-bg-color: #dddfe4;
   --off-sale-overlay-bg-color: rgba(0, 0, 0, 0.7);
   --product-overlay-bg-color: #161616;
@@ -492,7 +492,7 @@ a {
 
 .collections__overlay {
   position: absolute;
-  background: var(--collections-overlay-color);
+  opacity: 0.5;
   height: 100%;
   width: 100%;
 }

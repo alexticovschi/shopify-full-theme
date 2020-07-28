@@ -1,0 +1,77 @@
+{%- assign collection1 = collections[section.settings.collection1] -%}
+{%- assign collection2 = collections[section.settings.collection2] -%}
+
+
+<section class="collections">
+  <div class="row">
+    <a href="{{ collection1.url }}" class="col-md-6 collections__left-collection">
+      <div class="collections__left-collection-wrapper">
+        <div class="collections__overlay" style="background: {{ section.settings.collection1_bg_color }}"></div>
+        <img alt="" class="collections__left-collection-img" src="{{ collection1.image | img_url: '500x' }}"/>
+      </div>
+
+      <span class="collections__left-collection__collection-title l-coll-title">
+        <span style="color: {{ section.settings.collection1_text_color }}">{{ collection1.title }}</span>
+      </span>
+    </a>
+
+    <a href="{{ collection2.url }}" class="col-md-6 collections__right-collection">
+      <div class="collections__right-collection__bg" style="background: {{ section.settings.collection2_bg_color }}">
+        <div class="collections__right-collection__img-wrapper">
+          <img alt="" class="collections__right-collection__img" src="{{ collection2.image | img_url: '500x' }}"/>
+
+          <span class="collections__right-collection__collection-title r-coll-title">
+            <span style="color: {{ section.settings.collection2_text_color }}">{{ collection2.title }}</span>
+          </span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+{% schema %}
+
+{
+  "name": "Collections",
+  "settings": [
+		{
+			"type":      "collection",
+			"id":        "collection1",
+			"label":     "Collection 1",
+			"info":      "Choose a collection"
+		},{
+			"type":      "color",
+			"id":        "collection1_bg_color",
+			"label":     "Background Color",
+			"default":   "#FFF450"
+		},{
+			"type":      "color",
+			"id":        "collection1_text_color",
+			"label":     "Title Color",
+			"default":   "#ffffff"
+		},{
+			"type":      "collection",
+			"id":        "collection2",
+			"label":     "Collection 2",
+			"info":      "Choose a collection"
+		},{
+			"type":      "color",
+			"id":        "collection2_bg_color",
+			"label":     "Background Color",
+			"default":   "#dddfe4"
+		},{
+			"type":      "color",
+			"id":        "collection2_text_color",
+			"label":     "Title Color",
+			"default":   "#ffffff"
+		}
+	],
+  "presets": [
+    {
+      "name": "Collections",
+      "category": "Image"
+    }
+  ]
+}
+
+{% endschema %}
