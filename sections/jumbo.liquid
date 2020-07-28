@@ -1,20 +1,17 @@
 <section class="jumbo">
   {% if section.settings.bg_type == 'video' %}
     {% if section.settings.video_type == 'vimeo' %}
-      <!-- <iframe allow="autoplay" class="jumbo__bg-video" frameborder="0" src="//player.vimeo.com/video/353546049?title=0&amp;portrait=0&amp;byline=0&amp;autoplay=1&loop=1&controls=0&autopause=0&mute=1"></iframe> -->
       <iframe allow="autoplay" class="jumbo__bg-video" frameborder="0" src="//player.vimeo.com/video/{{ section.settings.video_id }}?title=0&amp;portrait=0&amp;byline=0&amp;autoplay=1&loop=1&controls=0&autopause=0&mute=1"></iframe>
     {% else %}
-      <!-- <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="jumbo__bg-video" frameborder="0" height="315" src="https://www.youtube.com/embed/kGEHvObtGAA?autoplay=1&loop=1&mute=1&controls=0" width="560"></iframe> -->
       <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="jumbo__bg-video" frameborder="0" height="315" src="https://www.youtube.com/embed/{{ section.settings.video_id }}?autoplay=1&loop=1&mute=1&controls=0" width="560"></iframe>
     {% endif %}
-
   {% else %}
     <div class="jumbo__bg-image" style="background: url('{{ section.settings.bg_image | img_url: '1200x' }}'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
   {% endif %}
   <div class="jumbo__transparent-color"></div>
   <div class="jumbo__titles">
-    <h1 class="jumbo__title">OFF WHITE</h1>
-    <h2 class="jumbo__subtitle">New Collection</h2>
+    <h1 class="jumbo__title">{{ section.settings.jumbo_title }}</h1>
+    <h2 class="jumbo__subtitle">{{  section.settings.jumbo_subtitle }}</h2>
   </div>
   <div class="jumbo__state">
     <span class="jumbo__state__number">01</span>
@@ -76,6 +73,16 @@
       "id": "video_id",
       "label": "Video ID",
       "default": "353546049"
+    }, {
+      "type": "text",
+      "id": "jumbo_title",
+      "label": "Jumbo Title",
+      "default": "OFF WHITE"
+    }, {
+      "type": "text",
+      "id": "jumbo_subtitle",
+      "label": "Jumbo Subtitle",
+      "default": "New Collection"
     }, {
       "type": "radio",
       "id": "video_type",

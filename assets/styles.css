@@ -18,16 +18,28 @@
           box-sizing: border-box;
 }
 
-a {
-  text-decoration: none !important;
-}
-
 html,
 body {
-  font-family: 'Poppins', sans-serif;
   max-width: 100%;
   overflow-x: hidden;
   background-color: var(--body-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  line-height: 1.1;
+}
+
+a {
+  text-decoration: none !important;
 }
 
 /* Header SECTION */
