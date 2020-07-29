@@ -1,0 +1,64 @@
+{%- assign collection = collections[section.settings.collection] -%}
+{%- assign col_num = section.settings.num -%}
+
+<section class="products">
+  <h2 class="products__title">{{ collection.title }}</h2>
+  <div class="container">
+    <div class="row">
+      {% for product in collection.products limit: section.settings.product_limit %}
+        <div class="col-md-6 col-lg-{%- if col_num == 2 -%} 6 {%- elsif col_num == 3 -%} 4 {%- elsif col_num == 4 -%} 3 {%- else -%} 2 {% endif%} product">
+          <a class="product__bg" href="{{ product.url }}">
+            <img alt="product" class="product__img" src="{{ product.featured_image | img_url: '350x' }}"/>
+            <div class="product__overlay">
+              <span class="product__title">{{ product.title }}</span>
+              <span class="product__title">{{ product.price | money_with_currency }}</span>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+
+{
+  "name": "Products Group",
+  "settings": [
+		{
+			"type":      "collection",
+			"id":        "collection",
+			"label":     "Collection On Sale",
+			"info":      "Choose a collection"
+		},
+    {
+      "type": "range",
+      "id": "num",
+      "label": "Products per row",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+		{
+			"type": "text",
+			"id": "product_limit",
+			"label":     "Maximum Amount Of Products",
+			"default": "8"
+		},
+		{
+			"type":      "color",
+			"id":        "product_info_bg_color",
+			"label":     "Product Info Background",
+			"default":   "#000000"
+		}
+	],
+  "presets": [
+    {
+      "name": "Products Group",
+      "category": "Collection"
+    }
+  ]
+}
+
+{% endschema %}

@@ -3,7 +3,7 @@
 
 <section class="off-sale" style="background-image: url('{{ collection.image | img_url: '1200x' }}');">
   <div class="off-sale__overlay" style="background: {{ bgColor | color_modify: 'alpha', 0.65 }}
-                                    ">
+                                          ">
     <span class="off-sale__number">{{ section.settings.percent }}%</span>
     <span class="off-sale__title">OFF SALE</span>
     <a class="off-sale__link" href="{{ collection.url }}">VIEW</a>
@@ -29,7 +29,7 @@
 			"type":      "color",
 			"id":        "collection_bg_color",
 			"label":     "Background Color",
-			"default":   "#FFF450"
+			"default":   "#000000"
 		}
 	],
   "presets": [
