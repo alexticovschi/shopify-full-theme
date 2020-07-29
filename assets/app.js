@@ -1,146 +1,155 @@
-const jumboTL = gsap.timeline();
+const homeController = new ScrollMagic.Controller();
+const jumboNodes = document.querySelectorAll('.jumbo');
+const collectionsNodes = document.querySelectorAll('.collections');
+const offsaleNodes = document.querySelectorAll('.off-sale');
+const productsNodes = document.querySelectorAll('.products');
 
 // create a timeline of each animation
-
 /* Jumbo ANIMATION */
-jumboTL
-  .fromTo(
-    '.jumbo__transparent-color',
-    {
-      opacity: 0,
-    },
-    {
-      opacity: 1,
-      duration: 1.2,
-    }
-  )
-  .fromTo(
-    '.header__logo',
-    {
-      x: -200,
-      opacity: 0,
-    },
-    {
-      x: 0,
-      opacity: 1,
-      duration: 1.2,
-    }
-  )
-  .fromTo(
-    '.header__menu',
-    {
-      x: 200,
-      opacity: 0,
-    },
-    {
-      x: 0,
-      opacity: 1,
-      duration: 1.3,
-    },
-    '>-1.3'
-  )
-  .fromTo(
-    '.jumbo__titles',
-    {
-      x: 200,
-      opacity: 0,
-    },
-    {
-      x: 0,
-      opacity: 1,
-      duration: 1.3,
-    },
-    '>-1'
-  )
-  .fromTo(
-    '.jumbo__state',
-    {
-      x: '100%',
-    },
-    {
-      x: 0,
-      duration: 1.3,
-    }
-  )
-  .fromTo(
-    '.jumbo__store-info',
-    {
-      y: '100%',
-    },
-    {
-      y: 0,
-      duration: 1,
-    },
-    '>-1.8'
-  )
-  .fromTo(
-    '.jumbo__store-info img',
-    {
-      y: 400,
-      opacity: 0,
-    },
-    {
-      y: 0,
-      opacity: 1,
-      duration: 1,
-      stagger: 0.2,
-    },
-    '>-1.8'
-  );
+if (jumboNodes !== null) {
+  jumboNodes.forEach((node) => {
+    const tl = gsap.timeline();
+    tl.fromTo(
+      node.querySelectorAll('.jumbo__transparent-color'),
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 1.2,
+      }
+    )
+      .fromTo(
+        '.header__logo',
+        {
+          x: -200,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1.2,
+        }
+      )
+      .fromTo(
+        '.header__menu',
+        {
+          x: 200,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1.3,
+        },
+        '>-1.3'
+      )
+      .fromTo(
+        node.querySelectorAll('.jumbo__titles'),
+        {
+          x: 200,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1.3,
+        },
+        '>-1'
+      )
+      .fromTo(
+        node.querySelectorAll('.jumbo__state'),
+        {
+          x: '100%',
+        },
+        {
+          x: 0,
+          duration: 1.3,
+        }
+      )
+      .fromTo(
+        node.querySelectorAll('.jumbo__store-info'),
+        {
+          y: '100%',
+        },
+        {
+          y: 0,
+          duration: 1,
+        },
+        '>-1.8'
+      )
+      .fromTo(
+        node.querySelectorAll('.jumbo__store-info img'),
+        {
+          y: 400,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.2,
+        },
+        '>-1.8'
+      );
+  });
+}
 
 /* Collections ANIMATION */
-const collectionsTL = gsap.timeline();
-collectionsTL
-  .fromTo(
-    '.collections .col-md-6',
-    {
-      y: 300,
-      opacity: 0,
-    },
-    {
-      y: 0,
-      opacity: 1,
-      duration: 1,
-    }
-  )
-  .fromTo(
-    '.collections .l-coll-title ',
-    {
-      y: 300,
-      opacity: 0,
-    },
-    {
-      y: 0,
-      opacity: 1,
-      duration: 1,
-    }
-  )
-  .fromTo(
-    '.collections .r-coll-title span',
-    {
-      y: 300,
-      opacity: 0,
-    },
-    {
-      y: -100,
-      opacity: 1,
-      duration: 1,
-    },
-    '>-.8'
-  );
+if (collectionsNodes != null) {
+  collectionsNodes.forEach((node) => {
+    const tl = gsap.timeline();
+    tl.fromTo(
+      node.querySelectorAll('.col-md-6'),
+      {
+        y: 300,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+      }
+    )
+      .fromTo(
+        node.querySelectorAll('.l-coll-title'),
+        {
+          y: 300,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+        }
+      )
+      .fromTo(
+        node.querySelectorAll('.r-coll-title span'),
+        {
+          y: 300,
+          opacity: 0,
+        },
+        {
+          y: -100,
+          opacity: 1,
+          duration: 1,
+        },
+        '>-.8'
+      );
 
-/* ANIMATE ON SCROLL */
-const homeController = new ScrollMagic.Controller();
-const collectionsScene = new ScrollMagic.Scene({
-  triggerElement: '.collections',
-  triggerHook: 1,
-  reverse: false,
-  offset: 150,
-  duration: 0,
-})
-  .setTween(collectionsTL)
-  // .addIndicators()
-  .addTo(homeController);
+    /* ANIMATE ON SCROLL */
+    const collectionsScene = new ScrollMagic.Scene({
+      triggerElement: node,
+      triggerHook: 1,
+      reverse: false,
+      offset: 150,
+      duration: 0,
+    })
+      .setTween(tl)
+      // .addIndicators()
+      .addTo(homeController);
+  });
+}
 
 /* Header ANIMATION */
 const headerTL = gsap.timeline();
@@ -179,76 +188,83 @@ const headerScene = new ScrollMagic.Scene({
   .addTo(homeController);
 
 /* Off-sale ANIMATION */
-const offsaleTL = gsap.timeline();
-offsaleTL
-  .fromTo(
-    '.off-sale',
-    {
-      opacity: 0,
-    },
-    {
-      opacity: 1,
-    }
-  )
-  .fromTo(
-    '.off-sale__number',
-    {
-      scale: 0,
-    },
-    {
-      scale: 1,
-      duration: 1,
-    }
-  )
-  .fromTo(
-    '.off-sale__title',
-    {
-      scale: 0,
-    },
-    {
-      scale: 1,
-      duration: 1,
-    },
-    '>-1'
-  );
+if (offsaleNodes !== null) {
+  offsaleNodes.forEach((node) => {
+    const tl = gsap.timeline();
+    tl.fromTo(
+      node,
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+      }
+    )
+      .fromTo(
+        node.querySelectorAll('.off-sale__number'),
+        {
+          scale: 0,
+        },
+        {
+          scale: 1,
+          duration: 1,
+        }
+      )
+      .fromTo(
+        node.querySelectorAll('.off-sale__title'),
+        {
+          scale: 0,
+        },
+        {
+          scale: 1,
+          duration: 1,
+        },
+        '>-1'
+      );
 
-const offsaleScene = new ScrollMagic.Scene({
-  triggerElement: '.off-sale',
-  triggerHook: 1,
-  reverse: true,
-  offset: 150,
-  duration: document.querySelector('.off-sale').offsetHeight,
-})
-  .setTween(offsaleTL)
-  // .addIndicators()
-  .addTo(homeController);
+    const offsaleScene = new ScrollMagic.Scene({
+      triggerElement: node,
+      triggerHook: 1,
+      reverse: true,
+      offset: 150,
+      duration: node.offsetHeight,
+    })
+      .setTween(tl)
+      // .addIndicators()
+      .addTo(homeController);
+  });
+}
 
 /* Products ANIMATION */
-const productsTL = gsap.timeline();
-productsTL.fromTo(
-  '.products .product__bg',
-  {
-    opacity: 0,
-    y: 100,
-  },
-  {
-    opacity: 1,
-    y: 0,
-    stagger: 0.3,
-    duration: 0.3,
-  }
-);
+if (productsNodes != null) {
+  productsNodes.forEach((node) => {
+    const tl = gsap.timeline();
+    tl.fromTo(
+      node.querySelectorAll('.product__bg'),
+      {
+        opacity: 0,
+        y: 100,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.3,
+        duration: 0.3,
+      }
+    );
 
-const productsScene = new ScrollMagic.Scene({
-  triggerElement: '.products',
-  triggerHook: 1,
-  reverse: false,
-  offset: 20,
-  duration: 0,
-})
-  .setTween(productsTL)
-  // .addIndicators()
-  .addTo(homeController);
+    const productsScene = new ScrollMagic.Scene({
+      triggerElement: node,
+      triggerHook: 1,
+      reverse: false,
+      offset: 20,
+      duration: 0,
+    })
+      .setTween(tl)
+      // .addIndicators()
+      .addTo(homeController);
+  });
+}
 
 /* Footer ANIMATION */
 const footerTL = gsap.timeline();
