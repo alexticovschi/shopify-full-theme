@@ -71,8 +71,7 @@
         </noscript>
       </a>
     {% else %}
-      <a class="site-header__logo-link" href="{{ routes.root_url }}">{{ shop.name }}
-        - Kill Billies</a>
+      <a class="site-header__logo-link" href="{{ routes.root_url }}">{{ shop.name }}</a>
     {% endif %}
   </div>
   <ul class="header__menu">
@@ -238,49 +237,44 @@
 </section>
 
 <script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "Organization",
-    "name":
-  {{ shop.name | json }},
-  {% if section.settings.logo %}
-    {% assign image_size = section.settings.logo.width | append:'x' %}
-    "logo":
-    {{ section.settings.logo | img_url: image_size | prepend: "https:" | json }},
-  {% endif %}
-  "sameAs": [
-  {{ settings.social_twitter_link | json }},
-  {{ settings.social_facebook_link | json }},
-  {{ settings.social_pinterest_link | json }},
-  {{ settings.social_instagram_link | json }},
-  {{ settings.social_tumblr_link | json }},
-  {{ settings.social_snapchat_link | json }},
-  {{ settings.social_youtube_link | json }},
-  {{ settings.social_vimeo_link | json }}
-  ],
-    "url":
-  {{ shop.url | append: page.url | json }}
-  }
+
+
+[36mLine: 1[0m
+[31m{[0m
+[31m    "@context": "http://schema.org",[0m
+[31m    "@type": "Organization",[0m
+[31m    "name": {{ shop.name | json }},{% if section.settings.logo %}[0m
+[31m        {% assign image_size = section.settings.logo.width | append:'x' %}[0m
+[31m        "logo" : {{ section.settings.logo | img_url: image_size | prepend: "https:" | json }},{% endif %}[0m
+[31m    "sameAs": [[0m
+
+[36mLine: 20[0m
+[32m(empty line)[0m
+
 </script>
 
 {% if request.page_type == 'index' %}
   {% assign potential_action_target = shop.url | append: routes.search_url | append: "?q={search_term_string}" %}
   <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      "name": {{ shop.name | json }},
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {{ potential_action_target | json }},
-        "query-input": "required name=search_term_string"
-      },
-      "url": {{ shop.url | append: page.url | json }}
-    }
-  </script>
+
+
+[36mLine: 1[0m
+[31m{[0m
+[31m    "@context": "http://schema.org",[0m
+[31m    "@type": "WebSite",[0m
+[31m    "name": {{ shop.name | json }},[0m
+[31m    "potentialAction": {[0m
+[31m        "@type": "SearchAction",[0m
+[31m        "target": {{ potential_action_target | json }},[0m
+
+[36mLine: 13[0m
+[32m(empty line)[0m
+
+</script>
 {% endif %}
 
 {% schema %}
+
 {
   "name": {
     "da": "Overskrift",
@@ -326,8 +320,7 @@
         "zh-CN": "logo 图片",
         "zh-TW": "標誌圖片"
       }
-    },
-    {
+    }, {
       "type": "range",
       "id": "logo_max_width",
       "label": {
@@ -355,8 +348,7 @@
       "step": 5,
       "unit": "px",
       "default": 100
-    },
-    {
+    }, {
       "type": "link_list",
       "id": "main_linklist",
       "label": {
@@ -380,8 +372,7 @@
         "zh-TW": "選單"
       },
       "default": "main-menu"
-    },
-    {
+    }, {
       "type": "header",
       "content": {
         "da": "Meddelelseslinje",
@@ -403,8 +394,7 @@
         "zh-CN": "公告栏",
         "zh-TW": "公告列"
       }
-    },
-    {
+    }, {
       "type": "checkbox",
       "id": "message",
       "label": {
@@ -428,8 +418,7 @@
         "zh-TW": "顯示公告"
       },
       "default": false
-    },
-    {
+    }, {
       "type": "checkbox",
       "id": "home_page_only",
       "label": {
@@ -453,8 +442,7 @@
         "zh-TW": "僅限首頁"
       },
       "default": true
-    },
-    {
+    }, {
       "type": "text",
       "id": "message_text",
       "label": {
@@ -497,8 +485,7 @@
         "zh-CN": "在此处进行公告",
         "zh-TW": "在此公告資訊"
       }
-    },
-    {
+    }, {
       "type": "url",
       "id": "message_link",
       "label": {
@@ -541,8 +528,7 @@
         "zh-CN": "可选",
         "zh-TW": "(選填)"
       }
-    },
-    {
+    }, {
       "type": "color",
       "id": "color_bg",
       "label": {
@@ -566,8 +552,7 @@
         "zh-TW": "橫條"
       },
       "default": "#3a3a3a"
-    },
-    {
+    }, {
       "type": "color",
       "id": "color_text",
       "label": {
@@ -594,4 +579,5 @@
     }
   ]
 }
+
 {% endschema %}
