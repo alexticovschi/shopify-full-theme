@@ -42,6 +42,10 @@ a {
   text-decoration: none !important;
 }
 
+.content-wrapper {
+  padding: 100px 0;
+}
+
 /* Header SECTION */
 .header {
   position: fixed;
