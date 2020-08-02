@@ -3,6 +3,7 @@ const jumboNodes = document.querySelectorAll('.jumbo');
 const collectionsNodes = document.querySelectorAll('.collections');
 const offsaleNodes = document.querySelectorAll('.off-sale');
 const productsNodes = document.querySelectorAll('.products');
+const homeActive = document.querySelector('.template-index');
 
 // create a timeline of each animation
 /* Jumbo ANIMATION */
@@ -177,10 +178,10 @@ headerTL
   );
 
 const headerScene = new ScrollMagic.Scene({
-  triggerElement: '.jumbo',
-  triggerHook: 1,
+  triggerElement: 'body',
+  triggerHook: 0,
   reverse: true,
-  offset: document.querySelector('.jumbo').offsetHeight + 100,
+  offset: homeActive != null ? document.querySelector('header').offsetHeight + 100 : 0,
   duration: 0,
 })
   .setTween(headerTL)
