@@ -1,11 +1,11 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Debut",
-    "theme_author": "Shopify",
-    "theme_version": "16.7.0",
-    "theme_documentation_url": "https://help.shopify.com/manual/using-themes/themes-by-shopify/debut",
-    "theme_support_url": "https://support.shopify.com/"
+    "theme_name": "Alex Store",
+    "theme_author": "Alex Ticovschi",
+    "theme_version": "1.0.0",
+    "theme_documentation_url": "http://alexticovschi.com/alex_theme/docs",
+    "theme_support_url": "http://alexticovschi.com/alex_theme/support"
   },
   {
     "name": {
@@ -29,6 +29,22 @@
       "zh-TW": "色彩"
     },
     "settings": [
+      {
+        "type": "header",
+        "content": "Header and Mobile Menu"
+      },
+      {
+        "type": "color",
+        "id": "header_logo_color",
+        "label": "Logo Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "header_menu_links",
+        "label": "Header Links Color",
+        "default": "#ffffff"
+      },
       {
         "type": "header",
         "content": {
