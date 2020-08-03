@@ -41,6 +41,12 @@
       },
       {
         "type": "color",
+        "id": "header_bg_color",
+        "label": "Header Background Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
         "id": "header_menu_links",
         "label": "Header Links Color",
         "default": "#ffffff"
