@@ -7,34 +7,40 @@
 /* Footer SECTION */
 /*# sourceMappingURL=styles.css.map */
 
+{% assign header_font = settings.type_header_font %}
+{% assign base_font = settings.type_base_font %}
+
+{{ header_font | font_face }}
+{{ base_font | font_face }}
+
 * {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
-html {
-	max-width: 100%;
-	overflow-x: hidden;
-	background-color: #f4f7fd;
-}
+html, 
 body {
+	font-family: {{ base_font.family }}, 'Poppins', sans-serif;
 	max-width: 100%;
 	overflow-x: hidden;
 	background-color: #f4f7fd;
 }
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Poppins', sans-serif;
+	font-family: {{ header_font.family }}, 'Poppins', sans-serif;
+	font-weigth: {{ header_font.weight }};
+	font-size: {{ settings.type_header_base_size }};
 	margin: 0;
 	line-height: 1.1;
 	color: {{ settings.color_text }};
 }
 p {
-	font-family: 'Poppins', sans-serif;
+	font-family: {{ base_font.family }}, 'Poppins', sans-serif;
+	font-size: {{ settings.type_base_size }};
 	margin: 0;
 	line-height: 1.1;
 	color: {{ settings.color_body_text }};
 }
 span {
-	font-family: 'Poppins', sans-serif;
+	font-family: {{ base_font.family }}, 'Poppins', sans-serif;
 	margin: 0;
 	line-height: 1.1;
 }
