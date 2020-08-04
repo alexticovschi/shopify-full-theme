@@ -46,6 +46,16 @@
         "default": "#000000"
       },
       {
+        "type": "header",
+        "content": "Theme Main Colors"
+      },
+      {
+        "type": "color",
+        "id": "highlight_color",
+        "label": "Highlight Color",
+        "default": "#ffff00"
+      },
+      {
         "type": "color",
         "id": "header_menu_links",
         "label": "Header Links Color",
@@ -97,7 +107,7 @@
           "zh-CN": "标题和链接",
           "zh-TW": "標題和連結"
         },
-        "default": "#3a3a3a"
+        "default": "#1b1b1b"
       },
       {
         "type": "color",
@@ -122,7 +132,7 @@
           "zh-CN": "正文文本",
           "zh-TW": "內文"
         },
-        "default": "#333232"
+        "default": "#1b1b1b"
       },
       {
         "type": "color",

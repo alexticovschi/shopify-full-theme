@@ -21,40 +21,17 @@ body {
 	overflow-x: hidden;
 	background-color: #f4f7fd;
 }
-h1 {
+h1, h2, h3, h4, h5, h6 {
 	font-family: 'Poppins', sans-serif;
 	margin: 0;
 	line-height: 1.1;
-}
-h2 {
-	font-family: 'Poppins', sans-serif;
-	margin: 0;
-	line-height: 1.1;
-}
-h3 {
-	font-family: 'Poppins', sans-serif;
-	margin: 0;
-	line-height: 1.1;
-}
-h4 {
-	font-family: 'Poppins', sans-serif;
-	margin: 0;
-	line-height: 1.1;
-}
-h5 {
-	font-family: 'Poppins', sans-serif;
-	margin: 0;
-	line-height: 1.1;
-}
-h6 {
-	font-family: 'Poppins', sans-serif;
-	margin: 0;
-	line-height: 1.1;
+	color: {{ settings.color_text }};
 }
 p {
 	font-family: 'Poppins', sans-serif;
 	margin: 0;
 	line-height: 1.1;
+	color: {{ settings.color_body_text }};
 }
 span {
 	font-family: 'Poppins', sans-serif;
@@ -281,7 +258,7 @@ a {
 }
 .jumbo__title {
 	font-size: 8rem;
-	color: #ffff00;
+	color: {{ settings.highlight_color }};
 	font-weight: 900;
 	text-transform: uppercase;
 	-webkit-transform: translate3d(100px, 0, 0);
@@ -481,7 +458,7 @@ a {
 	-webkit-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
 	&:hover {
-		background-color: #ffff00;
+		background-color: {{ settings.highlight_color }};
 		color: #000;
 	}
 }
@@ -531,7 +508,7 @@ a {
 		height: 100%;
 		width: 100%;
 		padding: 0 1rem;
-		color: #ffff00;
+		color: {{ settings.highlight_color }};
 		background: #161616;
 		-webkit-transition: all 0.2s ease-in-out;
 		transition: all 0.2s ease-in-out;
@@ -608,7 +585,7 @@ a {
 		transition: all 0.3s ease-in-out;
 		&:hover {
 			color: #000;
-			background-color: #ffff00;
+			background-color: {{ settings.highlight_color }};
 		}
 	}
 }
