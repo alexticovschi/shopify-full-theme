@@ -23,12 +23,12 @@
         <div class="row">
           {% for block in section.blocks %}
             {%- assign footer_linklist = block.settings.menu -%}
-            <div class="col-md-4">
+            <div class="col-md-4 mt-4">
               <div class="footer__menu footer-fade-in">
                 <span class="footer__menu-title">{{ block.settings.title }}</span>
                 <ul>
                   {% for link in linklists[footer_linklist].links %}
-                    <li>
+                    <li class="mt-2">
                       <a href="{{ link.url }}">
                         {{ link.title | escape }}
                       </a>
@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="col-md-6">
-        <div class="footer-fade-in">
+        <div class="footer-fade-in mt-4">
           <div class="footer__social-title">Follow Us</div>
           <ul class="footer__social-icons">
             {% if settings.social_facebook_link != blank %}
