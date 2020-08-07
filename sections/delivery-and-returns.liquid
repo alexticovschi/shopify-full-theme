@@ -1,0 +1,114 @@
+<div class="delivery-and-returns mt-3">
+  <div class="container">
+    <div class="page-title mb-4 px-5">
+      <h1 class="pb-2">{{ section.settings.heading }}</h1>
+      <p>{{ section.settings.text_intro }}</p>
+    </div>
+      
+    <div class="card mb-2">
+      <div class="card-body">
+        <h2 class="card-title">{{ section.settings.delivery_heading }}</h2>
+        <p class="card-text">{{ section.settings.delivery_content }}</p>
+      </div>
+    </div>
+
+    <div class="card mb-2">
+      <div class="card-body">
+        <h2 class="card-title">{{ section.settings.cancelations_heading }}</h2>
+        <p class="card-text">{{ section.settings.cancelations_content }}</p>
+      </div>
+    </div>
+
+    <div class="card mb-2">
+      <div class="card-body">
+        <h2 class="card-title">{{ section.settings.returns_heading }}</h2>
+        <p class="card-text">{{ section.settings.returns_content }}</p>
+      </div>
+    </div>
+
+    <div class="card mb-2">
+      <div class="card-body">
+        <h2 class="card-title">{{ section.settings.exchanges_heading }}</h2>
+        <p class="card-text">{{ section.settings.exchanges_content }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  
+  {% schema %}
+  
+  {
+    "name": "Delivery & Returns Page",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Delivery & Returns"
+        },
+        {
+          "type": "textarea",
+          "id": "text_intro",
+          "label": "Text Intro",
+          "default": "Enter some text intro"
+        },
+        {
+          "type": "text",
+          "id": "delivery_heading",
+          "label": "Delivery",
+          "default": "Delivery"
+        },
+        {
+          "type": "textarea",
+          "id": "delivery_content",
+          "label": "Delivery Content",
+          "default": "Enter delivery related content."
+        },
+        {
+          "type": "text",
+          "id": "cancelations_heading",
+          "label": "Cancelations",
+          "default": "Cancelations"
+        },
+        {
+          "type": "textarea",
+          "id": "cancelations_content",
+          "label": "Cancelations Content",
+          "default": "Enter cancelation related content."
+        }
+        ,
+        {
+          "type": "text",
+          "id": "returns_heading",
+          "label": "Returns",
+          "default": "Returns"
+        },
+        {
+          "type": "textarea",
+          "id": "returns_content",
+          "label": "Returns Content",
+          "default": "Enter returns related content."
+        },
+        {
+          "type": "text",
+          "id": "exchanges_heading",
+          "label": "Exchanges",
+          "default": "Exchanges"
+        },
+        {
+          "type": "textarea",
+          "id": "exchanges_content",
+          "label": "Exchanges Content",
+          "default": "Enter exchanges related content."
+        }
+    ],
+    "presets": [
+      {
+        "name": "Delivery & Returns Page",
+        "category": "Page"
+      }
+    ]
+  }
+  
+  {% endschema %}
