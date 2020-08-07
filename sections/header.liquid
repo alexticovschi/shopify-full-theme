@@ -237,40 +237,43 @@
 </section>
 
 <script type="application/ld+json">
-
-
-[36mLine: 1[0m
-[31m{[0m
-[31m    "@context": "http://schema.org",[0m
-[31m    "@type": "Organization",[0m
-[31m    "name": {{ shop.name | json }},{% if section.settings.logo %}[0m
-[31m        {% assign image_size = section.settings.logo.width | append:'x' %}[0m
-[31m        "logo" : {{ section.settings.logo | img_url: image_size | prepend: "https:" | json }},{% endif %}[0m
-[31m    "sameAs": [[0m
-
-[36mLine: 20[0m
-[32m(empty line)[0m
-
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": {{ shop.name | json }},
+  {% if section.settings.logo %}
+    {% assign image_size = section.settings.logo.width | append:'x' %}
+    "logo": {{ section.settings.logo | img_url: image_size | prepend: "https:" | json }},
+  {% endif %}
+  "sameAs": [
+    {{ settings.social_twitter_link | json }},
+    {{ settings.social_facebook_link | json }},
+    {{ settings.social_pinterest_link | json }},
+    {{ settings.social_instagram_link | json }},
+    {{ settings.social_tumblr_link | json }},
+    {{ settings.social_snapchat_link | json }},
+    {{ settings.social_youtube_link | json }},
+    {{ settings.social_vimeo_link | json }}
+  ],
+  "url": {{ shop.url | append: page.url | json }}
+}
 </script>
 
 {% if request.page_type == 'index' %}
   {% assign potential_action_target = shop.url | append: routes.search_url | append: "?q={search_term_string}" %}
   <script type="application/ld+json">
-
-
-[36mLine: 1[0m
-[31m{[0m
-[31m    "@context": "http://schema.org",[0m
-[31m    "@type": "WebSite",[0m
-[31m    "name": {{ shop.name | json }},[0m
-[31m    "potentialAction": {[0m
-[31m        "@type": "SearchAction",[0m
-[31m        "target": {{ potential_action_target | json }},[0m
-
-[36mLine: 13[0m
-[32m(empty line)[0m
-
-</script>
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ potential_action_target | json }},
+        "query-input": "required name=search_term_string"
+      },
+      "url": {{ shop.url | append: page.url | json }}
+    }
+  </script>
 {% endif %}
 
 {% schema %}
