@@ -1,0 +1,157 @@
+<div class="authenticity-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 order-sm-last order-md-first order-lg-last">
+        <div class="info-section-image">
+          <img src="{{ section.settings.section_image1 | img_url: '500x' }}" alt="">
+        </div>
+      </div> 
+      <div class="col-md-5 order-sm-last order-md-last order-lg-last">
+        <div class="info-section-text second">
+          <h1 class="info-section-title">{{ section.settings.section_title1 }}</h1>
+          <h2 class="info-section-subtitle">{{ section.settings.section_subtitle1 }}</h2>
+          <p>{{ section.settings.section_info1 }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-7 order-sm-first order-md-last order-lg-last">
+        <div class="info-section-image">
+          <img src="{{ section.settings.section_image2 | img_url: '500x' }}" alt="">
+        </div>
+      </div>
+      <div class="col-md-5 order-sm-last order-md-first order-lg-first">
+        <div class="info-section-text">
+          <h1 class="info-section-title">{{ section.settings.section_title2 }}</h1>
+          <h2 class="info-section-subtitle">{{ section.settings.section_subtitle2 }}</h2>
+          <p>{{ section.settings.section_info2 }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-7 order-sm-last order-md-first order-lg-last">
+        <div class="info-section-image">
+          <img src="{{ section.settings.section_image3 | img_url: '500x' }}" alt="">
+        </div>
+      </div> 
+      <div class="col-md-5 order-sm-last order-md-last order-lg-last">
+        <div class="info-section-text second">
+          <h1 class="info-section-title">{{ section.settings.section_title3 }}</h1>
+          <h2 class="info-section-subtitle">{{ section.settings.section_subtitle3 }}</h2>
+          <p>{{ section.settings.section_info3 }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-7 order-sm-first order-md-last order-lg-last">
+        <div class="info-section-image">
+          <img src="{{ section.settings.section_image4 | img_url: '500x' }}" alt="">
+        </div>
+      </div>
+      <div class="col-md-5 order-sm-last order-md-first order-lg-first">
+        <div class="info-section-text">
+          <h1 class="info-section-title">{{ section.settings.section_title4 }}</h1>
+          <h2 class="info-section-subtitle">{{ section.settings.section_subtitle4 }}</h2>
+          <p>{{ section.settings.section_info4 }}</p>
+        </div>
+      </div>                                                    
+    </div>
+  </div>
+</div>
+
+{% schema %}
+
+{
+  "name": "Authenticity",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title1",
+      "label": "Title Section #1",
+      "default": "Title Section"
+    }, 
+    {
+      "type": "text",
+      "id": "section_subtitle1",
+      "label": "Subtitle Section #1",
+      "default": "Subtitle Section"
+    }, 
+    {
+      "type": "textarea",
+      "id": "section_info1",
+      "label": "Section Info #1"
+    }, 
+    {
+      "type": "image_picker",
+      "id": "section_image1",
+      "label": "Section Image #1"
+    }, 
+    {
+      "type": "text",
+      "id": "section_title2",
+      "label": "Title Section #2"
+    }, 
+    {
+      "type": "text",
+      "id": "section_subtitle2",
+      "label": "Subtitle Section #2"
+    }, 
+    {
+      "type": "textarea",
+      "id": "section_info2",
+      "label": "Section Info #2"
+    }, 
+    {
+      "type": "image_picker",
+      "id": "section_image2",
+      "label": "Section Image #2"
+    }, 
+    {
+      "type": "text",
+      "id": "section_title3",
+      "label": "Title Section #3"
+    }, 
+    {
+      "type": "text",
+      "id": "section_subtitle3",
+      "label": "Subtitle Section #3"
+    }, 
+    {
+      "type": "textarea",
+      "id": "section_info3",
+      "label": "Section Info #3"
+    }, 
+    {
+      "type": "image_picker",
+      "id": "section_image3",
+      "label": "Section Image #3"
+    }, 
+    {
+      "type": "text",
+      "id": "section_title4",
+      "label": "Title Section #4"
+    }, 
+    {
+      "type": "text",
+      "id": "section_subtitle4",
+      "label": "Subtitle Section #4"
+    }, 
+    {
+      "type": "textarea",
+      "id": "section_info4",
+      "label": "Section Info #4"
+    }, 
+    {
+      "type": "image_picker",
+      "id": "section_image4",
+      "label": "Section Image #4"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Authenticity"
+    }
+  ]
+}
+
+{% endschema %}

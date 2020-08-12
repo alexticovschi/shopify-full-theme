@@ -7638,7 +7638,7 @@ $toolbar-height-small: 46px;
 .logo-bar__item {
   display: inline-block;
   vertical-align: middle;
-  max-width: 160px;
+  max-width: 260px;
   margin: 0 ($section-spacing / 2) $section-spacing-small;
 }
 
@@ -8707,3 +8707,38 @@ $min-height-disclosure: 92px;
   }
 }
 
+
+// Services section
+.section-bar {
+  list-style: none;
+  text-align: center;
+  margin-bottom: -$section-spacing-small;
+}
+
+@include media-query($medium-up) {
+  .section-bar--large {
+    margin-bottom: -$section-spacing;
+  }
+}
+
+.section-bar__item {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 305px;
+  margin: 0 ($section-spacing / 2) $section-spacing-small;
+}
+
+@include media-query($medium-up) {
+  .section-bar__item--large {
+    margin-bottom: $section-spacing;
+  }
+}
+
+.section-bar__image {
+  display: block;
+  margin: 0 auto;
+}
+
+.section-bar__link {
+  display: block;
+}
